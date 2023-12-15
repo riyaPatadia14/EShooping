@@ -1,0 +1,15 @@
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\bin\Debug\net6.0\BusinessAccessLayer.deps.json
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\bin\Debug\net6.0\BusinessAccessLayer.dll
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\bin\Debug\net6.0\BusinessAccessLayer.pdb
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.csproj.AssemblyReference.cache
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.AssemblyInfoInputs.cache
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.AssemblyInfo.cs
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.csproj.CopyComplete
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.dll
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\refint\BusinessAccessLayer.dll
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.pdb
+C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\ref\BusinessAccessLayer.dll
