@@ -10,28 +10,49 @@ $("#deleteFormAction").click(function () {
 })
 //Details Model Pop-Up
 
-function showDetails(categoryId) {
-    $.ajax({
-        url: '/CategoryController/Details/' + categoryId,
-        type: 'GET',
-        dataType: 'html', // Specify that you expect HTML in response
-        success: function (data) {
-            $('#detailsModal .modal-body').html(data);
-            $('#detailsModal').modal('show');
-        },
-        error: function () {
-            console.error('Error fetching category details.');
-        }
-    });
-}
+    //function showDetails(categoryId) {
+    //    $.ajax({
+    //        url: '/CategoryController/Details/' + categoryId,
+    //        type: 'GET',
+    //        dataType: 'html',
+    //        success: function (data) {
+    //            $('#detailsModal').html(data);
+    //            $('#detailsModal').modal('show');
+    //        },
+    //        error: function () {
+    //            console.error('Error fetching category details.');
+    //        }
+    //    });
+    //}
 
-$("#detailFormAction").click(function () {
-    var categoryId = $(this).data('category-id');
-    showDetails(categoryId);
-    $("#detailsModal").modal('show');
-});
+    //$("#detailFormAction").click(function () {
+    //    var categoryId = $(this).data('category-id');
+    //    showDetails(categoryId);
+    //    $("#detailsModal").modal('show');
+    //});
 
+$(function () {
+    debugger
+    var PlaceHoldeElement = $('#PlaceHolderHere');
+    $('button[data-toggle="ajax-modal"]').click(function (event) {
+        var url = $(this).data('url');
+        var decodedUrl = decodeURIComponent(url);
+        $.get(decodedUrl).done(function (data) {
+            PlaceHoldeElement.html(data);
+            PlaceHoldeElement.find('.modal').modal('show');
+        })
+    })
+    PlaceHoldeElement.on('click', '[data-save="modal"]', function (event) {
+        var form = $(this).parents('.modal').find('form');
+        var actionUrl = form.attr('action');
+        var url = "/CategoryController/Details/" + actionUrl;
+        var sendData = form.serialize();
+        $.post(url, sendData).done(function (data) {
+            PlaceHoldeElement.find('.modal').modal('hide');
+        })
 
+    })
+})
 // Create Model Pop-Up
 function AddCategory() {
     var addData = {

@@ -49,7 +49,7 @@ namespace ECommerceShopping.Controllers
                 var categoryById = _categoryService.GetCategoryById(Id);
                 if (categoryById != null)
                 {
-                    return PartialView("_Details", categoryById);
+                    return PartialView("_Details",categoryById);
                 }
                 return RedirectToAction("Index");
             }
@@ -87,7 +87,7 @@ namespace ECommerceShopping.Controllers
         }
         public IActionResult Delete()
         {
-            return PartialView();
+            return PartialView("_Delete");
         }
     }
 }
