@@ -1,4 +1,6 @@
-﻿namespace DataAccessLayer.Models.ProductSet.Dto
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace DataAccessLayer.Models.ProductSet.Dto
 {
     public class ProductListDto
     {
@@ -12,5 +14,11 @@
         public string ImagePath { get; set; } = string.Empty;
         public string InStock { get; set; } = string.Empty;
         public bool IsActive { get; set; }
+        [NotMapped]
+        public string BrandName { get; set; } = string.Empty;
+        [NotMapped]
+        public string CategoryName { get; set; } = string.Empty;
+        [NotMapped]
+        public string ColorName { get; set; } = string.Empty;
     }
 }

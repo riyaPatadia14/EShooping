@@ -4,12 +4,8 @@ using DataAccessLayer.Models.ColorSet;
 using DataAccessLayer.Models.OrderDetailsSet;
 using DataAccessLayer.Models.OrdersSet;
 using DataAccessLayer.Models.ProductSet;
+using DataAccessLayer.Models.UserSet;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataAccessLayer.Data
 {
@@ -23,5 +19,6 @@ namespace DataAccessLayer.Data
         public DbSet<OrderDetailsModel> OrderDetails { get; set; }
         public DbSet<OrdersModel> Orders { get; set; }
         public DbSet<ProductsModel> Products { get; set; }
+        public DbSet<UsersModel> Users { get; set; }
     }
 }

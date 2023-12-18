@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceShopping.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         public IActionResult Index()

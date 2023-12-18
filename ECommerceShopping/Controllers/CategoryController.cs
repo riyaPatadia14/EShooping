@@ -1,9 +1,11 @@
 ﻿using BusinessAccessLayer.Services.Categories;
 using DataAccessLayer.Models.CategorySet.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceShopping.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;

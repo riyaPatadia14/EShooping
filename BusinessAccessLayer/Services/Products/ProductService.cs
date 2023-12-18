@@ -1,10 +1,6 @@
-﻿using DataAccessLayer.Interface;
-using DataAccessLayer.Models.ProductSet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccessLayer.Helper;
+using DataAccessLayer.Interface;
+using DataAccessLayer.Models.ProductSet.Dto;
 
 namespace BusinessAccessLayer.Services.Products
 {
@@ -15,23 +11,19 @@ namespace BusinessAccessLayer.Services.Products
         {
             _productRepository = productRepository;
         }
-
-        public async Task<IList<ProductsModel>> GetAllProducts()
+        public async Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber)
         {
-            return await _productRepository.GetAllProducts();
+            return await _productRepository.GetAllProducts(pageNumber);
         }
-
-        public ProductsModel GetProductsById(int id)
+        public ProductViewDto GetProductsById(int id)
         {
             return _productRepository.GetProductsById(id);
         }
-
-        public async Task ProductAdd(ProductsModel products)
+        public async Task ProductAdd(ProductAddDto products)
         {
             await _productRepository.AddProduct(products);
         }
-
-        public async Task ProductUpdate(ProductsModel products)
+        public async Task ProductUpdate(ProductViewDto products)
         {
             await _productRepository.UpdateProduct(products);
         }

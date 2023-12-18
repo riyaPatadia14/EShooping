@@ -15,12 +15,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+    <div id="PlaceHolderHere"></div>
     <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" id="btnCreateModal" style="margin-left:5%;">
         <i class="fa fa-plus" aria-hidden="true"></i>
     </button>
     <div class="container mt-3">
         <h2>Category List</h2>
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="categoryGrid">
             <thead>
                 <tr>
                     <th>CategoryName</th>
@@ -34,19 +35,18 @@
                 {
                     <tr>
                         <td>@item.CategoryName</td>
-                        <td><img src="~/img/category-img/@item.ImagePath" style="width:100px; height:100px" /></td>
+                        <td><img src="~/img/category-img/@item.ImagePath" class="border border-white rounded-3" style="width:100px; height:100px" /></td>
                         <td>@item.Active</td>
                         <td>
-
-                            <a asp-action="Details" asp-route-id="@item.Id" class="detailFormAction" data-category-id="@item.Id">
-                                <i class="fa fa-eye btn btn-info" aria-hidden="true"></i>
-                            </a>
-                            <a asp-action="Edit" asp-route-id="@item.Id" id="editFormAction">
-                                <i class="fa fa-pencil-square-o btn btn-success" aria-hidden="true"></i>
-                            </a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" id="deleteFormAction">
-                                <i class="fa fa-trash btn btn-danger" aria-hidden="true"></i>
-                            </a>
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#btnDetailModal" id="btnDetailModal" data-url="@Url.Action($"Details/{item.Id}")">
+                                Details
+                            </button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#btnEditModal" id="btnEditModal" data-url="@Url.Action($"Edit/{item.Id}")">
+                                Edit
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#deleteCategory" id="btnDeleteModal" data-url="@Url.Action($"Delete/{item.Id}")">
+                                Delete
+                            </button>
                         </td>
                     </tr>
                 }
@@ -92,59 +92,25 @@
     </div>
     @*Create Modal End*@
     @*Delete Modal start*@
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Add New Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="modal-body">
-                        @Html.Partial("_Delete", new CategoryAddDto())
-                    </div>
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
-    @*Delete Modal End*@
-    @*Edit Modal Start*@
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @Html.Partial("_Edit", new CategoryViewDto())
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
-    @*Edit Modal End*@
-    @*Details Modal Start*@
-    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="details-modal">
-                    @Html.Partial("_Details", new CategoryViewDto())
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
 
-    @*Details Modal End*@
+    @*  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+    @Html.Partial("_Delete", new CategoryAddDto())
+    </div>
+    <div class="modal-footer">
+    </div>
+    </div>
+    </div>
+    </div>*@
+
+    @*Delete Modal End*@
+
     @section scripts{
         <script src="~/js/category/model.js"></script>
     }

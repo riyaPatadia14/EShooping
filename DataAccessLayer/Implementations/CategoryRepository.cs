@@ -6,7 +6,6 @@ using DataAccessLayer.Models.CategorySet;
 using DataAccessLayer.Models.CategorySet.Dto;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Implementations
 {
@@ -33,7 +32,7 @@ namespace DataAccessLayer.Implementations
                 {
                     CategoryName = category.CategoryName,
                     ImagePath = category.ImagePath.FileName,
-                    Active = category.Active,
+                    IsActive = category.Active,
                 };
 
                 await _genericRepository.Add(categoryAdd);
@@ -77,7 +76,7 @@ namespace DataAccessLayer.Implementations
                    Id = x.Id,
                    CategoryName = x.CategoryName,
                    ImagePath = x.ImagePath,
-                   Active = x.Active
+                   Active = x.IsActive
                }).ToList();
                 int pageSize = 10;
                 return await PaginatedList<CategoryListDto>.CreateAsync(categoryList, pageNumber ?? 1, pageSize);
@@ -97,7 +96,7 @@ namespace DataAccessLayer.Implementations
                     Id = id,
                     CategoryName = categoryById.CategoryName,
                     ImagePath = categoryById.ImagePath,
-                    Active = categoryById.Active
+                    Active = categoryById.IsActive
                 };
                 return categoryView;
             }
@@ -118,7 +117,7 @@ namespace DataAccessLayer.Implementations
                         Id = category.Id,
                         CategoryName = category.CategoryName,
                         ImagePath = category.ImageFile.FileName,
-                        Active = category.Active
+                        IsActive = category.Active
                     };
                     await _genericRepository.Update(categoryUpdate);
                 }
