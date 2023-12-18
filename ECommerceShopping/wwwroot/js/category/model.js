@@ -1,35 +1,12 @@
 ﻿// Edit Modal Pop-Up
 
-$("#editFormAction").click(function () {
-    $("#editModal").modal('show');
-})
+
 //Delete Model pop-Up
 
 $("#deleteFormAction").click(function () {
     $("#deleteModal").modal('show');
 })
 //Details Model Pop-Up
-
-    //function showDetails(categoryId) {
-    //    $.ajax({
-    //        url: '/CategoryController/Details/' + categoryId,
-    //        type: 'GET',
-    //        dataType: 'html',
-    //        success: function (data) {
-    //            $('#detailsModal').html(data);
-    //            $('#detailsModal').modal('show');
-    //        },
-    //        error: function () {
-    //            console.error('Error fetching category details.');
-    //        }
-    //    });
-    //}
-
-    //$("#detailFormAction").click(function () {
-    //    var categoryId = $(this).data('category-id');
-    //    showDetails(categoryId);
-    //    $("#detailsModal").modal('show');
-    //});
 
 $(function () {
     debugger

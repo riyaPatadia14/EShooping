@@ -81,7 +81,7 @@ namespace ECommerceShopping.Controllers
             var categoryUpdate = _categoryService.CategoryUpdate(category);
             if (categoryUpdate != null)
             {
-                return PartialView(categoryUpdate);
+                return PartialView("_Edit",categoryUpdate);
             }
             return RedirectToAction("Index");
         }
