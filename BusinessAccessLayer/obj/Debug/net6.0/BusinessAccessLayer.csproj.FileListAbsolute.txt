@@ -13,3 +13,18 @@ C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net
 C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\refint\BusinessAccessLayer.dll
 C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.pdb
 C:\Users\riya.patadia\Documents\Task\EShopping\BusinessAccessLayer\obj\Debug\net6.0\ref\BusinessAccessLayer.dll
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\bin\Debug\net6.0\BusinessAccessLayer.deps.json
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\bin\Debug\net6.0\BusinessAccessLayer.dll
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\bin\Debug\net6.0\BusinessAccessLayer.pdb
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\bin\Debug\net6.0\DataAccessLayer.dll
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\bin\Debug\net6.0\DataAccessLayer.pdb
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.csproj.AssemblyReference.cache
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.AssemblyInfoInputs.cache
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.AssemblyInfo.cs
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.csproj.CoreCompileInputs.cache
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.csproj.CopyComplete
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.dll
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\refint\BusinessAccessLayer.dll
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\BusinessAccessLayer.pdb
+C:\Users\It\Desktop\activities\CSharp\csharp tasks\BusinessAccessLayer\obj\Debug\net6.0\ref\BusinessAccessLayer.dll

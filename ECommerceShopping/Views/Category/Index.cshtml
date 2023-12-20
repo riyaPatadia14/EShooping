@@ -35,16 +35,16 @@
                 {
                     <tr>
                         <td>@item.CategoryName</td>
-                        <td><img src="~/img/category-img/@item.ImagePath" class="border border-white rounded-3" style="width:100px; height:100px" /></td>
+                        <td><img src="~/img/category-img/@item.ImagePath" style="width:100px; height:100px" /></td>
                         <td>@item.Active</td>
                         <td>
                             <button type="button" class="btn btn-info" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#btnDetailModal" id="btnDetailModal" data-url="@Url.Action($"Details/{item.Id}")">
                                 Details
                             </button>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#btnEditModal" id="btnEditModal" data-url="@Url.Action($"Edit/{item.Id}")">
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#editCategory" data-url="@Url.Action($"Edit/{item.Id}")">
                                 Edit
                             </button>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#deleteCategory" id="btnDeleteModal" data-url="@Url.Action($"Delete/{item.Id}")">
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#deleteCategory" data-url="@Url.Action($"Delete/{item.Id}")">
                                 Delete
                             </button>
                         </td>
@@ -93,7 +93,7 @@
     @*Create Modal End*@
     @*Delete Modal start*@
 
-    @*  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    @*<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
     <div class="modal-header">
@@ -110,7 +110,6 @@
     </div>*@
 
     @*Delete Modal End*@
-
     @section scripts{
         <script src="~/js/category/model.js"></script>
     }

@@ -9,81 +9,77 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ECommerceShopping
 build_property.RootNamespace = ECommerceShopping
-build_property.ProjectDir = C:\Users\riya.patadia\Documents\Task\EShopping\ECommerceShopping\
+build_property.ProjectDir = C:\Users\It\Desktop\activities\CSharp\csharp tasks\ECommerceShopping\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\riya.patadia\Documents\Task\EShopping\ECommerceShopping
+build_property.MSBuildProjectDirectory = C:\Users\It\Desktop\activities\CSharp\csharp tasks\ECommerceShopping
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Category/Index.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Category/_Create.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Category/_Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcX0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Category/_Delete.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Category/_Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcX0RlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Category/_Details.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Category/_Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcX0RldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Category/_Edit.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Category/_Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcX0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Home/Index.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Home/Privacy.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Product/Index.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Product/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Product/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Product/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Product/_Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxfQ3JlYXRlLmNzaHRtbA==
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Product/View.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Product/_Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxfRGVsZXRlLmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Product/_Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxfRWRpdC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Product/_View.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUHJvZHVjdFxfVmlldy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Shared/Error.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/User/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/_ViewImports.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/_ViewStart.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/riya.patadia/Documents/Task/EShopping/ECommerceShopping/Views/Shared/_Layout.cshtml]
+[C:/Users/It/Desktop/activities/CSharp/csharp tasks/ECommerceShopping/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-xo99iejmy1
