@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/BusinessAccessLayer/obj/Debug/net6.0/BusinessAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+/DataAccessLayer/obj/Debug/net6.0/DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/0aab5d2d-42dd-4a12-99e5-3d49f8b17d7d.vsidx
+/IOCContainer/obj/Debug/net6.0/IOCContainer.GeneratedMSBuildEditorConfig.editorconfig
