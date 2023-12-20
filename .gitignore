@@ -124,3 +124,10 @@
 /ECommerceShopping/bin/Debug/net6.0/mt/Humanizer.resources.dll
 /ECommerceShopping/bin/Debug/net6.0/nb/Humanizer.resources.dll
 /ECommerceShopping/bin/Debug/net6.0/th-TH/Humanizer.resources.dll
+/BusinessAccessLayer/obj/Debug/net6.0/BusinessAccessLayer.csprojAssemblyReference.cache
+*.cache
+/ECommerceShopping/.vs/ECommerceShopping/DesignTimeBuild/.dtbcache.v2
+*.suo
+/ECommerceShopping/.vs/ProjectEvaluation/ecommerceshopping.metadata.v5.2
+/ECommerceShopping/.vs/ProjectEvaluation/ecommerceshopping.projects.v5.2
+/ECommerceShopping/.vs/ECommerceShopping/v17/.futdcache.v2
