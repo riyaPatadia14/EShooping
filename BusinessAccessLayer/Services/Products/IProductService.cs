@@ -8,7 +8,9 @@ namespace BusinessAccessLayer.Services.Products
     {
         Task ProductAdd(ProductAddDto products);
         Task ProductUpdate(ProductViewDto products);
-        ProductViewDto GetProductsById(int id);
+        Task<ProductViewDto> GetProductsById(int id);
         Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber);
+        Task<ProductAddDto> ProductDropDown(ProductAddDto products);
+        Task ProductDelete(ProductViewDto products);
     }
 }

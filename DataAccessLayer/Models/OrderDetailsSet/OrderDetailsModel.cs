@@ -9,6 +9,7 @@ namespace DataAccessLayer.Models.OrderDetailsSet
         public virtual int ProductId { get; set; } = 0;
         public int Qty { get; set; } = 0;
         public decimal UnitPrice { get; set; }
+        public bool IsDelete { get; set; }
         public OrdersModel Orders { get; set; }
     }
 }

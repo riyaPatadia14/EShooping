@@ -8,8 +8,9 @@
     {
         Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber);
         Task AddProduct(ProductAddDto products);
-        ProductViewDto GetProductsById(int id);
+        Task<ProductViewDto> GetProductsById(int id);
         Task UpdateProduct(ProductViewDto products);
-        Task DeleteProduct(ProductsModel products);
+        Task DeleteProduct(ProductViewDto products);
+        Task<ProductAddDto> ProductDropDownList(ProductAddDto products);
     }
 }

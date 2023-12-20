@@ -6,10 +6,6 @@ using DataAccessLayer.Models.ProductSet.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using DataAccessLayer.Helper;
-using DataAccessLayer.Models.CategorySet.Dto;
-using DataAccessLayer.Models.CategorySet;
-using System.Drawing;
-
 namespace DataAccessLayer.Implementations
 {
     public class ProductRepository : IProducts
@@ -17,14 +13,31 @@ namespace DataAccessLayer.Implementations
         private readonly IGenericRepository<ProductsModel> _genericRepository;
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly EShoppingDbContext _eShoppingDbContext;
+        private readonly IBrand _brandRepository;
+        private readonly IColor _colorRepository;
+        private readonly ICategory _categoryRepository;
 
-        public ProductRepository(IGenericRepository<ProductsModel> genericRepository, IHostingEnvironment hostingEnvironment, EShoppingDbContext eShoppingDbContext)
+        public ProductRepository(IGenericRepository<ProductsModel> genericRepository, IHostingEnvironment hostingEnvironment, EShoppingDbContext eShoppingDbContext, IBrand brandRepository, IColor colorRepository, ICategory categoryRepository)
         {
             _eShoppingDbContext = eShoppingDbContext;
             _hostingEnvironment = hostingEnvironment;
             _genericRepository = genericRepository;
+            _brandRepository = brandRepository;
+            _colorRepository = colorRepository;
+            _categoryRepository = categoryRepository;
         }
 
+        public async Task<ProductAddDto> ProductDropDownList(ProductAddDto products)
+        {
+            var productAddDto = new ProductAddDto
+            {
+                Categories = await _categoryRepository.GetCategoryList(),
+                Brands = await _brandRepository.GetAllBrand(),
+                Colors = await _colorRepository.GetAllColor(),
+            };
+
+            return productAddDto;
+        }
         public async Task AddProduct(ProductAddDto products)
         {
             try
@@ -37,15 +50,14 @@ namespace DataAccessLayer.Implementations
                 {
                     Title = products.Title,
                     Description = products.Description,
-                    CategoryId = products.CategoryId,
-                    BrandId = products.BrandId,
+                    CategoriesId = products.CategoriesId,
+                    BrandsId = products.BrandsId,
                     ColorId = products.ColorId,
                     Price = products.Price,
-                    ImagePath = products.ImagePath,
+                    ImagePath = products.ImageFile.FileName,
                     InStock = products.InStock,
                     IsActive = products.IsActive,
                 };
-
                 await _genericRepository.Add(productAdd);
             }
             catch (Exception)
@@ -65,9 +77,14 @@ namespace DataAccessLayer.Implementations
                 throw;
             }
         }
-        public Task DeleteProduct(ProductsModel products)
+        public async Task DeleteProduct(ProductViewDto products)
         {
-            return _genericRepository.Delete(products);
+            products.IsDelete = true;
+            var deleteProduct = new ProductsModel
+            {
+                IsDelete = products.IsDelete,
+            };
+            await _genericRepository.Update(deleteProduct);
         }
         public async Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber)
         {
@@ -76,16 +93,16 @@ namespace DataAccessLayer.Implementations
                 var allProducts = await _genericRepository.GetAll();
                 var productList = (from product in _eShoppingDbContext.Products
                                    join color in _eShoppingDbContext.Colors on product.ColorId equals color.Id
-                                   join brand in _eShoppingDbContext.Brands on product.BrandId equals brand.Id
-                                   join category in _eShoppingDbContext.Categories on product.CategoryId equals category.Id
+                                   join brand in _eShoppingDbContext.Brands on product.BrandsId equals brand.Id
+                                   join category in _eShoppingDbContext.Categories on product.CategoriesId equals category.Id
                                    select new ProductListDto
                                    {
                                        Id = product.Id,
                                        Title = product.Title,
                                        Description = product.Description,
                                        Price = product.Price,
-                                       CategoryId = product.CategoryId,
-                                       BrandId = product.BrandId,
+                                       CategoryId = product.CategoriesId,
+                                       BrandId = product.BrandsId,
                                        ColorId = product.ColorId,
                                        IsActive = product.IsActive,
                                        InStock = product.InStock,
@@ -102,21 +119,27 @@ namespace DataAccessLayer.Implementations
                 throw;
             }
         }
-        public ProductViewDto GetProductsById(int id)
+        public async Task<ProductViewDto> GetProductsById(int id)
         {
             try
             {
                 var productById = _genericRepository.GetbyId(id);
                 var productView = new ProductViewDto()
                 {
+                    Categories = await _categoryRepository.GetCategoryList(),
+                    Brands = await _brandRepository.GetAllBrand(),
+                    Colors = await _colorRepository.GetAllColor(),
                     Id = id,
                     Title = productById.Title,
                     Description = productById.Description,
                     IsActive = productById.IsActive,
                     InStock = productById.InStock,
-                    CategoryId = productById.CategoryId,
-                    BrandId = productById.BrandId,
+                    BrandsId = productById.BrandsId,
+                    CategoriesId = productById.CategoriesId,
                     ColorId = productById.ColorId,
+                    CategoryName = productById.CategoryName,
+                    BrandName = productById.BrandName,
+                    ColorName = productById.ColorName,
                     Price = productById.Price,
                     ImagePath = productById.ImagePath,
                 };
@@ -131,42 +154,20 @@ namespace DataAccessLayer.Implementations
         {
             try
             {
-                var productId = _genericRepository.GetbyId(products.Id);
+                var productId = await GetProductsById(products.Id);
                 if (productId != null)
                 {
-                    var productList = (from product in _eShoppingDbContext.Products
-                                       join color in _eShoppingDbContext.Colors on product.ColorId equals color.Id
-                                       join brand in _eShoppingDbContext.Brands on product.BrandId equals brand.Id
-                                       join category in _eShoppingDbContext.Categories on product.CategoryId equals category.Id
-                                       where product.Id == products.Id
-                                       select new ProductViewDto
-                                       {
-                                           Id = product.Id,
-                                           Title = product.Title,
-                                           Description = product.Description,
-                                           Price = product.Price,
-                                           CategoryId = product.CategoryId,
-                                           BrandId = product.BrandId,
-                                           ColorId = product.ColorId,
-                                           IsActive = product.IsActive,
-                                           InStock = product.InStock,
-                                           ImagePath = product.ImagePath,
-                                           BrandName = brand.BrandName,
-                                           CategoryName = category.CategoryName,
-                                           ColorName = color.ColorName
-                                       }).ToList<ProductViewDto>();
-
                     var productUpdate = new ProductsModel()
                     {
                         Id = products.Id,
                         Title = products.Title,
                         Description = products.Description,
                         InStock = products.InStock,
-                        CategoryId = products.CategoryId,
-                        BrandId = products.BrandId,
+                        CategoriesId = products.CategoriesId,
+                        BrandsId = products.BrandsId,
                         ColorId = products.ColorId,
                         Price = products.Price,
-                        ImagePath = products.ImageFile.FileName,
+                        ImagePath = products.ImageFile != null ? products.ImageFile.FileName : productId.ImagePath,
                         IsActive = products.IsActive
                     };
                     await _genericRepository.Update(productUpdate);

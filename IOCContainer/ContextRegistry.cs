@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace IOCContainer
 {
@@ -15,12 +16,19 @@ namespace IOCContainer
     {
         public static void RegisterContainer(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<EShoppingDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("EShoppingConnection")));
+            services.AddDbContext<EShoppingDbContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString("EShoppingConnection"));
+                options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+            });
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IProducts, ProductRepository>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategory, CategoryRepository>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IBrand, BrandRepository>();
+            services.AddTransient<IColor, ColorRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                         .AddCookie(option =>
                         {
@@ -32,10 +40,10 @@ namespace IOCContainer
             services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(5);
-                options.Cookie.HttpOnly= true;
-                options.Cookie.IsEssential= true;
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
-          
+
         }
     }
 }

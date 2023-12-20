@@ -16,6 +16,7 @@ namespace DataAccessLayer.Models.OrdersSet
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public decimal OrderAmount { get; set; } = 0;
         public int PaymentMode { get; set; } = 0;
+        public bool IsDelete { get; set; }
         public ICollection<OrderDetailsModel> OrderDetails { get; set; }
     }
 }

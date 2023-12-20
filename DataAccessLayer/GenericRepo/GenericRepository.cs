@@ -63,18 +63,9 @@ namespace DataAccessLayer.GenericRepo
         {
             try
             {
-                var entry = _eShoppingDbContext.ChangeTracker.Entries<T>().FirstOrDefault(e => e.Entity == obj);
-
-                if (entry != null)
-                {
-                    entry.CurrentValues.SetValues(obj);
-                }
-                else
-                {
-                    _eShoppingDbContext.Entry(obj).State = EntityState.Modified;
-                }
-
-                await SaveChangeData();
+                _eShoppingDbContext.Set<T>().Attach(obj);
+                _eShoppingDbContext.Entry(obj).State = EntityState.Modified;
+                SaveChangeData();
             }
             catch (Exception)
             {
