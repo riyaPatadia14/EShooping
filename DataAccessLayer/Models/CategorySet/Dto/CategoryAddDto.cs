@@ -10,7 +10,7 @@ namespace DataAccessLayer.Models.CategorySet.Dto
         public string CategoryName { get; set; } = string.Empty;
         [NotMapped]
         public IFormFile ImagePath { get; set; }
-        public bool IsActive { get; set; }
+        public bool Active { get; set; }
         public bool IsDelete { get; set; }
         [NotMapped]
         public List<ProductsModel> Products { get; set; } = new List<ProductsModel>();

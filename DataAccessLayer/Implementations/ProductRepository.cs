@@ -43,7 +43,7 @@ namespace DataAccessLayer.Implementations
             try
             {
                 var path = _hostingEnvironment.WebRootPath;
-                var filePath = "img/category-img/" + products.ImageFile.FileName;
+                var filePath = "img/product-list-img/" + products.ImageFile.FileName;
                 var fullPath = Path.Combine(path, filePath);
                 UploadFile(products.ImageFile, fullPath);
                 var productAdd = new ProductsModel

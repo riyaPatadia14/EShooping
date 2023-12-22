@@ -1,4 +1,7 @@
-﻿using BusinessAccessLayer.Services.Categories;
+﻿using BusinessAccessLayer.Services.Brand;
+using BusinessAccessLayer.Services.Categories;
+using BusinessAccessLayer.Services.Client;
+using BusinessAccessLayer.Services.Color;
 using BusinessAccessLayer.Services.Products;
 using DataAccessLayer.Data;
 using DataAccessLayer.GenericRepo;
@@ -8,7 +11,6 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace IOCContainer
 {
@@ -20,7 +22,6 @@ namespace IOCContainer
             {
                 options.UseSqlServer(configuration.GetConnectionString("EShoppingConnection"));
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-
             });
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddTransient<IProducts, ProductRepository>();
@@ -28,7 +29,11 @@ namespace IOCContainer
             services.AddTransient<ICategory, CategoryRepository>();
             services.AddTransient<ICategoryService, CategoryService>();
             services.AddTransient<IBrand, BrandRepository>();
+            services.AddTransient<IBrandService, BrandService>();
             services.AddTransient<IColor, ColorRepository>();
+            services.AddTransient<IColorService, ColorService>();
+            services.AddTransient<IClient, ClientRepository>();
+            services.AddTransient<IClientService,ClientService>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                         .AddCookie(option =>
                         {

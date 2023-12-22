@@ -16,11 +16,13 @@
 </head>
 <body>
     <div id="PlaceHolderHere"></div>
-    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" id="btnCreateModal" style="margin-left:5%;">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-    </button>
-    <div class="container mt-3">
-        <h2>Category List</h2>
+    <div class="d-flex justify-content-center" style="padding-left:68%">
+        <button type="button" class="btn btn-primary " data-bs-toggle="modal" id="btnCreateModal" >
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </button>
+    </div>
+    <div class="container mt-1">
+        <h5>Category List</h5>
         <table class="table table-bordered" id="categoryGrid">
             <thead>
                 <tr>
@@ -57,21 +59,22 @@
         var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
         var nextDisabled = !Model.HasNextPage ? "disabled" : "";
     }
-
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-default @prevDisabled">
-        Previous
-    </a>
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-default @nextDisabled">
-        Next
-    </a>
+    <div class="d-flex justify-content-center" style="padding-left:63% ">
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @prevDisabled">
+            Previous
+        </a>
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default  @nextDisabled">
+            Next
+        </a>
+    </div>
     @*Create Modal Start*@
     <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">

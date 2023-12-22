@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ECommerceShopping.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Amado - Furniture Ecommerce | Home</title>
+    <link rel="icon" href="~/img/core-img/favicon.ico">
+    <link rel="stylesheet" href="~/css/core-style.css">
+    <link rel="stylesheet" href="~/style.css">
+</head>
+<body>
+    <div class="mobile-nav">
+        <div class="amado-navbar-brand">
+            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+        </div>
+        <div class="amado-navbar-toggler">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+    <header class="header-area clearfix">
+        <div class="nav-close">
+            <i class="fa fa-close" aria-hidden="true"></i>
+        </div>
+        <div class="logo">
+            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+        </div>
+        <nav class="amado-nav">
+            <ul>
+                <li class="active"><a asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a class="nav-link" asp-area="" asp-controller="Client" asp-action="Index">Shop</a></li>
+                <li><a class="nav-link" asp-area="" asp-controller="" asp-action="">Cart</a></li>
+                <li><a class="nav-link" asp-area="" asp-controller="" asp-action="">Chekout</a></li>
+                <li><a class="nav-link" asp-area="" asp-controller="User" asp-action="Login">Login</a></li>
+            </ul>
+        </nav>
+        <div class="cart-fav-search mb-100">
+        </div>
+        <div class="social-info d-flex justify-content-between">
+            <a href="https://www.pinterest.com/"><i class="fa fa-pinterest" aria-hidden="true"></i></a>
+            <a href="https://www.instagram.com/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </header>
+    <script src="~/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="~/js/popper.min.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/active.js" asp-append-version="true"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</body>
+</html>

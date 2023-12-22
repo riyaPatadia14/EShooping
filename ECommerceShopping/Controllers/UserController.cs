@@ -43,7 +43,7 @@ namespace ECommerceShopping.Controllers
             {
                 TempData["errorMessage"] = "Invalid Email";
                 TempData["errorMessage"] = "Invalid Password";
-                return View(user);
+                return RedirectToAction("Index", "Home");
             }
             return View();
         }

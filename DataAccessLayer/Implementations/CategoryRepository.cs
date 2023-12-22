@@ -33,7 +33,7 @@ namespace DataAccessLayer.Implementations
                 {
                     CategoryName = category.CategoryName,
                     ImagePath = category.ImagePath.FileName,
-                    IsActive = category.IsActive,
+                    IsActive = category.Active,
                 };
 
                 await _genericRepository.Add(categoryAdd);
@@ -77,9 +77,9 @@ namespace DataAccessLayer.Implementations
                    Id = x.Id,
                    CategoryName = x.CategoryName,
                    ImagePath = x.ImagePath,
-                   IsActive = x.IsActive
+                   Active = x.IsActive
                }).ToList();
-                int pageSize = 10;
+                int pageSize = 4;
                 return await PaginatedList<CategoryListDto>.CreateAsync(categoryList, pageNumber ?? 1, pageSize);
             }
             catch (Exception)
@@ -97,7 +97,7 @@ namespace DataAccessLayer.Implementations
                     Id = id,
                     CategoryName = categoryById.CategoryName,
                     ImagePath = categoryById.ImagePath,
-                    IsActive = categoryById.IsActive
+                    Active = categoryById.IsActive
                 };
                 return categoryView;
             }
@@ -118,7 +118,7 @@ namespace DataAccessLayer.Implementations
                         Id = category.Id,
                         CategoryName = category.CategoryName,
                         ImagePath = category.ImageFile != null ? category.ImageFile.FileName : categoryId.ImagePath,
-                        IsActive = category.IsActive
+                        IsActive = category.Active
                     };
                     await _genericRepository.Update(categoryUpdate);
                 }

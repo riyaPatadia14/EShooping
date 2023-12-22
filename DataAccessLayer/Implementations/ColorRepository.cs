@@ -20,6 +20,7 @@ namespace DataAccessLayer.Implementations
                {
                    Value = x.Id.ToString(),
                    Text = x.ColorName,
+                   Group = new SelectListGroup { Name = x.ColorCode },
                }).ToList();
             return colorList;
         }

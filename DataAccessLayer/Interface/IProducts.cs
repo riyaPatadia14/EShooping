@@ -1,7 +1,6 @@
 ﻿namespace DataAccessLayer.Interface
 {
     using DataAccessLayer.Helper;
-    using DataAccessLayer.Models.ProductSet;
     using DataAccessLayer.Models.ProductSet.Dto;
 
     public interface IProducts

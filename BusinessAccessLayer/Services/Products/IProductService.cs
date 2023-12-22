@@ -1,5 +1,4 @@
 ﻿using DataAccessLayer.Helper;
-using DataAccessLayer.Models.ProductSet;
 using DataAccessLayer.Models.ProductSet.Dto;
 
 namespace BusinessAccessLayer.Services.Products

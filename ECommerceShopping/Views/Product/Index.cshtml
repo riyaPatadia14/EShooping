@@ -59,15 +59,17 @@
                             <a class="btn btn-outline-success" href="Product/Edit/@item.Id">
                                 Edit
                             </a>
-                            <a class="btn btn-outline-danger" href="Product/Delete/@item.Id">
+                           <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#deleteCategory" data-url="@Url.Action($"Delete/{item.Id}")">
                                 Delete
-                            </a>
+                            </button>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
+    <p>Showing @((Model.PageIndex - 1) * Model.PageSize + 1) - @Math.Min(Model.PageIndex * Model.PageSize, Model.TotalItems) of @Model.TotalItems items on page @Model.PageIndex of @Model.TotalPages.</p>
+
     @{
         var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
         var nextDisabled = !Model.HasNextPage ? "disabled" : "";
@@ -87,27 +89,8 @@
        class="btn btn-default @nextDisabled">
         Next
     </a>
-    @*Create Modal Start*@
-    @*  <div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Add New Product</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-    <div class="modal-body">
-    @Html.Partial("_Create", new ProductAddDto())
-    </div>
-    </div>
-    <div class="modal-footer">
-    </div>
-    </div>
-    </div>
-    </div>*@
-    @*Create Modal End*@
     @section scripts{
-        <script src="~/js/product/model.js"></script>
+        <script src="~/js/category/model.js"></script>
     }
 </body>
 </html>
