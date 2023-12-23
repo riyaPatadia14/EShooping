@@ -1,15 +1,12 @@
 ﻿// Edit Modal Pop-Up
 
-
 //Delete Model pop-Up
-
 $("#deleteFormAction").click(function () {
     $("#deleteModal").modal('show');
 })
-//Details Model Pop-Up
 
+//Details Model Pop-Up
 $(function () {
-    debugger
     var PlaceHoldeElement = $('#PlaceHolderHere');
     $('button[data-toggle="ajax-modal"]').click(function (event) {
         var url = $(this).data('url');
@@ -27,9 +24,9 @@ $(function () {
         $.post(url, sendData).done(function (data) {
             PlaceHoldeElement.find('.modal').modal('hide');
         })
-
     })
 })
+
 // Create Model Pop-Up
 function AddCategory() {
     var addData = {

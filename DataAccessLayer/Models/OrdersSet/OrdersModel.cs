@@ -13,9 +13,10 @@ namespace DataAccessLayer.Models.OrdersSet
         public string ZipCode { get; set; } = string.Empty;
         public string Mobile { get; set; } = string.Empty;
         public string Comment { get; set; } = string.Empty;
-        public DateTime OrderDate { get; set; }
-        public decimal OrderAmount { get; set; }
-        public int PaymentMode { get; set; }
+        public DateTime OrderDate { get; set; } = DateTime.Now;
+        public decimal OrderAmount { get; set; } = 0;
+        public int PaymentMode { get; set; } = 0;
+        public bool IsDelete { get; set; }
         public ICollection<OrderDetailsModel> OrderDetails { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProductListDto>
+﻿@model PaginatedList<ProductListDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -15,79 +15,82 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#createEditModal" data-url="@Url.Action("Create")" style="margin-left:5%;">
+    <div id="PlaceHolderHere"></div>
+    <a href="Product/Create">
         <i class="fa fa-plus" aria-hidden="true"></i>
-    </button>
+    </a>
+    @*   <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" id="btnCreateProductModal" style="margin-left:5%;">
+    <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>*@
     <div class="container mt-3">
         <h2>Product List</h2>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>@Html.DisplayNameFor(model => model.Id)</th>
-                    <th>@Html.DisplayNameFor(model => model.Title)</th>
-                    <th>@Html.DisplayNameFor(model => model.Description)</th>
+                    <th>Title</th>
+                    <th>Description</th>
                     <th>Category</th>
                     <th>Brand</th>
                     <th>Color</th>
-                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>Price</th>
                     <th>Image</th>
-                    <th>@Html.DisplayNameFor(model => model.InStock)</th>
+                    <th>InStock</th>
                     <th>Active</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @*              @foreach (var item in Model)
-                {*@
-                <tr>
-                    @*     <td>@item.Title</td>
-                    <td>@item.Description</td>
-                    <td>@item.Description</td>
-                    <td>@item.CategoryId</td>
-                    <td>@item.BrandId</td>
-                    <td>@item.ColorId</td>
-                    <td>@item.Price</td>
-                    <td>@item.ImagePath</td>
-                    <td>@item.IsActive</td>
-                    @*      <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
-                    @* <td>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">
-                    <i class="fa fa-eye btn btn-info" aria-hidden="true"></i>
-                    </a>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">
-                    <i class="fa fa-pencil-square-o btn btn-success" aria-hidden="true"></i>
-                    </a>
-                    <a asp-page="./Edit" asp-route-id="@item.Id">
-                    <i class="fa fa-trash btn btn-danger" aria-hidden="true"></i>
-                    </a>
-                    </td>*@
-                    <td>Id</td>
-                    <td>Title</td>
-                    <td>Description</td>
-                    <td>Description</td>
-                    <td>CategoryId</td>
-                    <td>BrandId</td>
-                    <td>ColorId</td>
-                    <td>Price</td>
-                    <td>ImagePath</td>
-                    <td>IsActive</td>
-                    <td>
-                        @*<a asp-page="" asp-route-id="">*@
-                            <i class="btn btn-info fa fa-eye" aria-hidden="true"></i>
-                        @*</a> &nbsp;*@
-                       @*<a asp-page="" asp-route-id="">*@
-                            <i class="fa fa-pencil-square-o btn btn-success" aria-hidden="true"></i>
-                            
-                         <a asp-page="" asp-route-id="">
-                            <i class="fa fa-trash btn btn-danger" aria-hidden="true"></i>
-                        </a>
-                    </td>
-                </tr>
-                @*}*@
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td>@item.CategoryName</td>
+                        <td>@item.BrandName</td>
+                        <td>@item.ColorName</td>
+                        <td>@item.Price</td>
+                        <td><img src="~/img/category-img/@item.ImagePath" style="width:100px; height:100px" /></td>
+                        <td>@item.InStock</td>
+                        <td>@item.IsActive</td>
+                        <td>
+                            <a class="btn btn-outline-info" href="Product/Details/@item.Id">
+                                Details
+                            </a>
+                            <a class="btn btn-outline-success" href="Product/Edit/@item.Id">
+                                Edit
+                            </a>
+                           <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#deleteCategory" data-url="@Url.Action($"Delete/{item.Id}")">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
+    <p>Showing @((Model.PageIndex - 1) * Model.PageSize + 1) - @Math.Min(Model.PageIndex * Model.PageSize, Model.TotalItems) of @Model.TotalItems items on page @Model.PageIndex of @Model.TotalPages.</p>
+
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+    @section scripts{
+        <script src="~/js/category/model.js"></script>
+    }
 </body>
 </html>

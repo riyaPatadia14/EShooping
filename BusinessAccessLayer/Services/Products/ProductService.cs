@@ -1,10 +1,6 @@
-﻿using DataAccessLayer.Interface;
-using DataAccessLayer.Models.ProductSet;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DataAccessLayer.Helper;
+using DataAccessLayer.Interface;
+using DataAccessLayer.Models.ProductSet.Dto;
 
 namespace BusinessAccessLayer.Services.Products
 {
@@ -13,27 +9,87 @@ namespace BusinessAccessLayer.Services.Products
         private readonly IProducts _productRepository;
         public ProductService(IProducts productRepository)
         {
-            _productRepository = productRepository;
+            try
+            {
+                _productRepository = productRepository;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber)
+        {
+            try
+            {
+                return await _productRepository.GetAllProducts(pageNumber);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public Task<ProductViewDto> GetProductsById(int id)
+        {
+            try
+            {
+                return _productRepository.GetProductsById(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task ProductAdd(ProductAddDto products)
+        {
+            try
+            {
+                await _productRepository.AddProduct(products);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
-        public async Task<IList<ProductsModel>> GetAllProducts()
+        public async Task ProductDelete(ProductViewDto products)
         {
-            return await _productRepository.GetAllProducts();
+            try
+            {
+                await _productRepository.DeleteProduct(products);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public ProductsModel GetProductsById(int id)
+        public async Task<ProductAddDto> ProductDropDown(ProductAddDto products)
         {
-            return _productRepository.GetProductsById(id);
+            try
+            {
+                return await _productRepository.ProductDropDownList(products);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
-        public async Task ProductAdd(ProductsModel products)
+        public async Task ProductUpdate(ProductViewDto products)
         {
-            await _productRepository.AddProduct(products);
-        }
-
-        public async Task ProductUpdate(ProductsModel products)
-        {
-            await _productRepository.UpdateProduct(products);
+            try
+            {
+                await _productRepository.UpdateProduct(products);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
+

@@ -6,7 +6,7 @@ using DataAccessLayer.Models.CategorySet;
 using DataAccessLayer.Models.CategorySet.Dto;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DataAccessLayer.Implementations
 {
@@ -33,7 +33,7 @@ namespace DataAccessLayer.Implementations
                 {
                     CategoryName = category.CategoryName,
                     ImagePath = category.ImagePath.FileName,
-                    Active = category.Active,
+                    IsActive = category.Active,
                 };
 
                 await _genericRepository.Add(categoryAdd);
@@ -77,9 +77,9 @@ namespace DataAccessLayer.Implementations
                    Id = x.Id,
                    CategoryName = x.CategoryName,
                    ImagePath = x.ImagePath,
-                   Active = x.Active
+                   Active = x.IsActive
                }).ToList();
-                int pageSize = 10;
+                int pageSize = 4;
                 return await PaginatedList<CategoryListDto>.CreateAsync(categoryList, pageNumber ?? 1, pageSize);
             }
             catch (Exception)
@@ -97,7 +97,7 @@ namespace DataAccessLayer.Implementations
                     Id = id,
                     CategoryName = categoryById.CategoryName,
                     ImagePath = categoryById.ImagePath,
-                    Active = categoryById.Active
+                    Active = categoryById.IsActive
                 };
                 return categoryView;
             }
@@ -117,11 +117,30 @@ namespace DataAccessLayer.Implementations
                     {
                         Id = category.Id,
                         CategoryName = category.CategoryName,
-                        ImagePath = category.ImageFile.FileName,
-                        Active = category.Active
+                        ImagePath = category.ImageFile != null ? category.ImageFile.FileName : categoryId.ImagePath,
+                        IsActive = category.Active
                     };
                     await _genericRepository.Update(categoryUpdate);
                 }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<List<SelectListItem>> GetCategoryList()
+        {
+            try
+            {
+                var category = await _genericRepository.GetAll();
+                var categoryList = category
+               .Select(x => new SelectListItem()
+               {
+                   Value = x.Id.ToString(),
+                   Text = x.CategoryName,
+               }).ToList();
+
+                return categoryList;
             }
             catch (Exception)
             {

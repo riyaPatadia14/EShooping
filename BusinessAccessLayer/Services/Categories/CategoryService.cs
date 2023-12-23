@@ -2,6 +2,7 @@
 using DataAccessLayer.Interface;
 using DataAccessLayer.Models.CategorySet;
 using DataAccessLayer.Models.CategorySet.Dto;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BusinessAccessLayer.Services.Categories
 {
@@ -30,7 +31,12 @@ namespace BusinessAccessLayer.Services.Categories
         }
         public CategoryViewDto GetCategoryById(int id)
         {
-           return _categoryRepository.GetCategoryById(id);
+            return _categoryRepository.GetCategoryById(id);
+        }
+
+        public async Task<List<SelectListItem>> GetCategoryList()
+        {
+            return await _categoryRepository.GetCategoryList();
         }
     }
 }

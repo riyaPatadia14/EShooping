@@ -8,26 +8,24 @@
     <title>Create</title>
 </head>
 <body>
-    <div class="modal fade" id="deleteModal-@Model.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
+                    <h5 class="modal-title" id="detailCategoryLabel">Delete Category</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" id="details-modal">
                     <form asp-action="Delete" method="post" id="deleteForm">
                         <div class="modal-body">
-                            <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Id" asp-for="Id" >
                             Are sure you want delete the category?
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btn-close">Close</button>
+                        <div class="d-flex justify-content-center" >
+
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btn-close">Close</button> &nbsp;
                             <button type="button" class="btn btn-primary" id="btn-delete">Delete</button>
                         </div>
                     </form>
-                </div>
-                <div class="modal-footer">
                 </div>
             </div>
         </div>
