@@ -1,0 +1,16 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/edff99b0-d7a3-45f5-bf41-c8682ce0c86f.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/a7a3b245-b73c-4c6f-bd65-f20198f072ce.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/9e6335cc-41b0-46e6-9092-dff627940be1.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/98c1ddae-79c7-4df0-b816-e8b97a8b2a97.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/4b44b23b-f3af-4df4-8d53-e7b0ae984b8b.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/2c74369f-6dc7-4d23-92e4-f3f796b937b9.vsidx
+/ECommerceShopping/.vs/ProjectEvaluation/ecommerceshopping.projects.v6.1
+/ECommerceShopping/.vs/ProjectEvaluation/ecommerceshopping.metadata.v6.1
+/ECommerceShopping/.vs/ECommerceShopping/v17/.suo
+/ECommerceShopping/.vs/ECommerceShopping/v17/.futdcache.v2
+*.json
+/ECommerceShopping/.vs/ECommerceShopping/DesignTimeBuild/.dtbcache.v2
