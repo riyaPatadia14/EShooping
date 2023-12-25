@@ -339,3 +339,13 @@
 /ECommerceShopping/bin/Debug/net6.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
 /ECommerceShopping/bin/Debug/net6.0/zh-Hans/Humanizer.resources.dll
 /IOCContainer/obj/Debug/net6.0/IOCContainer.csproj.FileListAbsolute.txt
+/ECommerceShopping/bin/Debug/net6.0/Xamarin.Forms.Xaml.dll
+/ECommerceShopping/bin/Debug/net6.0/Xamarin.Forms.Platform.dll
+/ECommerceShopping/bin/Debug/net6.0/Xamarin.Forms.Core.dll
+/ECommerceShopping/bin/Debug/net6.0/nunit.framework.legacy.dll
+/ECommerceShopping/bin/Debug/net6.0/nunit.framework.dll
+/ECommerceShopping/bin/Debug/net6.0/Microsoft.Web.Mvc.dll
+/ECommerceShopping/wwwroot/img/core-img/noDataFound.jpg
+/ECommerceShopping/ECommerceShopping.csproj
+/ECommerceShopping/obj/ECommerceShopping.csproj.nuget.g.targets
+*.cs

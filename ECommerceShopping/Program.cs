@@ -25,10 +25,10 @@ namespace ECommerceShopping
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-            app.UseRouting();
+            app.UseCookiePolicy();
             app.UseSession();
-            app.UseAuthentication();
+            app.UseRouting();
+            app.UseAuthentication();    
             app.UseAuthorization();
 
             app.MapControllerRoute(

@@ -8,6 +8,7 @@ using DataAccessLayer.GenericRepo;
 using DataAccessLayer.Implementations;
 using DataAccessLayer.Interface;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,8 +33,9 @@ namespace IOCContainer
             services.AddTransient<IBrandService, BrandService>();
             services.AddTransient<IColor, ColorRepository>();
             services.AddTransient<IColorService, ColorService>();
-            services.AddTransient<IClient, ClientRepository>();
-            services.AddTransient<IClientService,ClientService>();
+            services.AddTransient<IShop, ShopRepository>();
+            services.AddTransient<IShopService,ShopService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                         .AddCookie(option =>
                         {
@@ -44,11 +46,10 @@ namespace IOCContainer
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(5);
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
-
         }
     }
 }

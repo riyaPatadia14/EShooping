@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace DataAccessLayer.Models.ClientSet
+namespace DataAccessLayer.Models.ShopSet
 {
-    public class ClientProductListDto
+    public class ShopProductListDto
     {
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;

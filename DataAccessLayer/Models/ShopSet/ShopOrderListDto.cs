@@ -1,8 +1,8 @@
 ﻿using DataAccessLayer.Models.ProductSet;
 using System.ComponentModel.DataAnnotations.Schema;
-namespace DataAccessLayer.Models.ClientSet
+namespace DataAccessLayer.Models.ShopSet
 {
-    public class ClientOrderListDto
+    public class ShopOrderListDto
     {
         public int Id { get; set; }
         public string ColorName { get; set; } = string.Empty;

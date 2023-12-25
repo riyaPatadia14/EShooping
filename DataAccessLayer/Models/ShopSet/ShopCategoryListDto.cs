@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations.Schema;
-
-
-namespace DataAccessLayer.Models.ClientSet
+namespace DataAccessLayer.Models.ShopSet
 {
-    public class ClientCategoryListDto
+    public class ShopCategoryListDto
     {
         public int Id { get; set; }
         public string CategoryName { get; set; } = string.Empty;

@@ -16,7 +16,6 @@ namespace DataAccessLayer.Implementations
         private readonly IBrand _brandRepository;
         private readonly IColor _colorRepository;
         private readonly ICategory _categoryRepository;
-
         public ProductRepository(IGenericRepository<ProductsModel> genericRepository, IHostingEnvironment hostingEnvironment, EShoppingDbContext eShoppingDbContext, IBrand brandRepository, IColor colorRepository, ICategory categoryRepository)
         {
             _eShoppingDbContext = eShoppingDbContext;
@@ -26,7 +25,6 @@ namespace DataAccessLayer.Implementations
             _colorRepository = colorRepository;
             _categoryRepository = categoryRepository;
         }
-
         public async Task<ProductAddDto> ProductDropDownList(ProductAddDto products)
         {
             var productAddDto = new ProductAddDto
@@ -35,7 +33,6 @@ namespace DataAccessLayer.Implementations
                 Brands = await _brandRepository.GetAllBrand(),
                 Colors = await _colorRepository.GetAllColor(),
             };
-
             return productAddDto;
         }
         public async Task AddProduct(ProductAddDto products)

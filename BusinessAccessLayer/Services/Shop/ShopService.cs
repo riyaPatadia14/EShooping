@@ -1,19 +1,19 @@
 ﻿using DataAccessLayer.Helper;
 using DataAccessLayer.Implementations;
 using DataAccessLayer.Interface;
-using DataAccessLayer.Models.ClientSet;
+using DataAccessLayer.Models.ShopSet;
 using DataAccessLayer.Models.ProductSet.Dto;
 
 namespace BusinessAccessLayer.Services.Client
 {
-    public class ClientService : IClientService
+    public class ShopService : IShopService
     {
-        private readonly IClient _clientRepostiory;
-        public ClientService(IClient clientRepository)
+        private readonly IShop _clientRepostiory;
+        public ShopService(IShop clientRepository)
         {
             _clientRepostiory = clientRepository;
         }
-        public async Task<PaginatedList<ClientProductListDto>> GetClientProductList(int? pageNumber)
+        public async Task<PaginatedList<ShopProductListDto>> GetClientProductList(int? pageNumber)
         {
             try
             {
@@ -24,7 +24,7 @@ namespace BusinessAccessLayer.Services.Client
                 throw;
             }
         }
-        public async Task<ClientProductViewDto> GetClientProductById(int id)
+        public async Task<ShopProductViewDto> GetClientProductById(int id)
         {
             try
             {

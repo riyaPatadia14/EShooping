@@ -1,8 +1,6 @@
-﻿using DataAccessLayer.Models.OrdersSet;
-
-namespace DataAccessLayer.Models.OrderDetailsSet
+﻿namespace DataAccessLayer.Models.OrderDetailsSet.Dto
 {
-    public class OrderDetailsModel
+    public class OrderDetailsListDto
     {
         public int Id { get; set; }
         public int OrdersId { get; set; } = 0;
@@ -10,6 +8,5 @@ namespace DataAccessLayer.Models.OrderDetailsSet
         public int Qty { get; set; } = 0;
         public decimal UnitPrice { get; set; }
         public bool IsDelete { get; set; }
-        public OrdersModel Orders { get; set; }
     }
 }
