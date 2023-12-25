@@ -2,6 +2,20 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+<<<<<<< HEAD
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/edff99b0-d7a3-45f5-bf41-c8682ce0c86f.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/a7a3b245-b73c-4c6f-bd65-f20198f072ce.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/9e6335cc-41b0-46e6-9092-dff627940be1.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/98c1ddae-79c7-4df0-b816-e8b97a8b2a97.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/4b44b23b-f3af-4df4-8d53-e7b0ae984b8b.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/2c74369f-6dc7-4d23-92e4-f3f796b937b9.vsidx
+/ECommerceShopping/.vs/ProjectEvaluation/ecommerceshopping.projects.v6.1
+/ECommerceShopping/.vs/ProjectEvaluation/ecommerceshopping.metadata.v6.1
+/ECommerceShopping/.vs/ECommerceShopping/v17/.suo
+/ECommerceShopping/.vs/ECommerceShopping/v17/.futdcache.v2
+*.json
+/ECommerceShopping/.vs/ECommerceShopping/DesignTimeBuild/.dtbcache.v2
+=======
 /BusinessAccessLayer/obj/Debug/net6.0/BusinessAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
 /DataAccessLayer/obj/Debug/net6.0/DataAccessLayer.GeneratedMSBuildEditorConfig.editorconfig
 /ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/0aab5d2d-42dd-4a12-99e5-3d49f8b17d7d.vsidx
@@ -339,6 +353,7 @@
 /ECommerceShopping/bin/Debug/net6.0/zh-Hans/Microsoft.CodeAnalysis.CSharp.Features.resources.dll
 /ECommerceShopping/bin/Debug/net6.0/zh-Hans/Humanizer.resources.dll
 /IOCContainer/obj/Debug/net6.0/IOCContainer.csproj.FileListAbsolute.txt
+<<<<<<< HEAD
 /ECommerceShopping/bin/Debug/net6.0/Xamarin.Forms.Xaml.dll
 /ECommerceShopping/bin/Debug/net6.0/Xamarin.Forms.Platform.dll
 /ECommerceShopping/bin/Debug/net6.0/Xamarin.Forms.Core.dll
@@ -349,3 +364,20 @@
 /ECommerceShopping/ECommerceShopping.csproj
 /ECommerceShopping/obj/ECommerceShopping.csproj.nuget.g.targets
 *.cs
+=======
+>>>>>>> 3b491b69680fb5901e8bbff289fa9aceee79b2d9
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/f8e4472d-92cf-40e9-b431-f17f57c2807d.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/9c591390-4cee-443b-a172-5c6056d8d38b.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/02910ee6-1eae-49b8-833c-1552b6a193c5.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/merges/4eccf93c-cccc-42e2-892f-01050eb5fdc6.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/merges/4982ff27-9200-4248-b39a-f4d7d5531857.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/merges/29fc4936-14de-4231-be11-634c5a809430.vsidx
+>>>>>>> 7503dea3d7556d5a9009a60e953095957d32b7b5
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/edff99b0-d7a3-45f5-bf41-c8682ce0c86f.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/9c591390-4cee-443b-a172-5c6056d8d38b.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/98c1ddae-79c7-4df0-b816-e8b97a8b2a97.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/4b44b23b-f3af-4df4-8d53-e7b0ae984b8b.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/edff99b0-d7a3-45f5-bf41-c8682ce0c86f.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/9c591390-4cee-443b-a172-5c6056d8d38b.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/98c1ddae-79c7-4df0-b816-e8b97a8b2a97.vsidx
+/ECommerceShopping/.vs/ECommerceShopping/FileContentIndex/4b44b23b-f3af-4df4-8d53-e7b0ae984b8b.vsidx
