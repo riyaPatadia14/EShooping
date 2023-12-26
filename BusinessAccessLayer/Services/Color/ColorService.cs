@@ -12,7 +12,16 @@ namespace BusinessAccessLayer.Services.Color
         }
         public async Task<List<SelectListItem>> GetAllColor()
         {
+            try
+            {
+
             return await _colorRepository.GetAllColor();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

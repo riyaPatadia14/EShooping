@@ -1,8 +1,9 @@
-﻿namespace DataAccessLayer.Models.ProductSet.Dto
+﻿using DataAccessLayer.Models.OrderDetailsSet.Dto;
+
+namespace DataAccessLayer.Models.ProductSet.Dto
 {
-    public class ProductAddToCartDto
+    public class ProductAddToCartDto : OrderDetailsListDto
     {
-        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public decimal Price { get; set; }
         public string ImagePath { get; set; } = string.Empty;

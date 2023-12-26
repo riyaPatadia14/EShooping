@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataAccessLayer.Models.OrderDetailsSet.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace DataAccessLayer.Interface
 {
     public interface ICart
     {
+        Task AddCartProducts(OrderDetailsAddDto orderDetailsAdd);
     }
 }

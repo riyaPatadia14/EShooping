@@ -8,11 +8,27 @@ namespace BusinessAccessLayer.Services.Brand
         private readonly IBrand _brandRepository;
         public BrandService(IBrand brandRepository)
         {
-            _brandRepository= brandRepository;
+            try
+            {
+                _brandRepository = brandRepository;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         public async Task<List<SelectListItem>> GetAllBrandList()
         {
-            return await _brandRepository.GetAllBrand();
+            try
+            {
+                return await _brandRepository.GetAllBrand();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

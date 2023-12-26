@@ -1,5 +1,7 @@
 ﻿using BusinessAccessLayer.Services.Brand;
+using BusinessAccessLayer.Services.Cart;
 using BusinessAccessLayer.Services.Categories;
+using BusinessAccessLayer.Services.Checkout;
 using BusinessAccessLayer.Services.Client;
 using BusinessAccessLayer.Services.Color;
 using BusinessAccessLayer.Services.Products;
@@ -35,6 +37,10 @@ namespace IOCContainer
             services.AddTransient<IColorService, ColorService>();
             services.AddTransient<IShop, ShopRepository>();
             services.AddTransient<IShopService,ShopService>();
+            services.AddTransient<ICheckout, CheckoutRepository>();
+            services.AddTransient<ICheckoutService, CheckoutService>();
+            services.AddTransient<ICart, CartRepository>();
+            services.AddTransient<ICartService,CartService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                         .AddCookie(option =>

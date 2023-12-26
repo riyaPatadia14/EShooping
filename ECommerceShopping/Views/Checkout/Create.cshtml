@@ -1,0 +1,106 @@
+﻿@model OrderAddDto
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Amado - Furniture Ecommerce Template | Checkout</title>
+    <link rel="icon" href="img/core-img/favicon.ico">
+    <link rel="stylesheet" href="css/core-style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="cart-table-area section-padding-100">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12 col-lg-8">
+                    <div class="checkout_details_area mt-50 clearfix">
+
+                        <div class="cart-title">
+                            <h2>Checkout</h2>
+                        </div>
+
+                        <form method="post" asp-action="Create" asp-controller="Checkout" id="checkoutForm">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="first_name" value="" name="FirstName" asp-for="FirstName" placeholder="First Name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="last_name" value="" name="LastName" asp-for="LastName" placeholder="Last Name" required>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" id="company" name="CompanyName" asp-for="CompanyName" placeholder="Company Name" value="">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="email" class="form-control" id="email" name="Email" asp-for="Email" placeholder="Email" value="">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control mb-3" id="street_address" name="Address" asp-for="Address" placeholder="Address" value="">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="zipCode" placeholder="Zip Code" value="" name="ZipCode" asp-for="ZipCode">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="number" class="form-control" id="phone_number" min="0" placeholder="Phone No" value="" name="Mobile" asp-for="Mobile">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <textarea name="comment" class="form-control w-100" id="comment" cols="30" rows="10" name="Comment" asp-for="Comment" placeholder="Leave a comment about your order"></textarea>
+                                </div>
+                                <input type="hidden" id="PaymentMode" asp-for="PaymentMode" name="PaymentMode" />
+                                <input type="hidden" asp-for="OrderAmount" name="OrderAmount" value="@ViewBag.total" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="cart-summary">
+                        <h5>Cart Total</h5>
+                        <ul class="summary-table">
+                            @if (ViewBag.total != null)
+                            {
+                                <li><span>subtotal:</span> <span>₹@ViewBag.total</span></li>
+                                <li><span>delivery:</span> <span>Free</span></li>
+                                <li><span>total:</span> <span>₹@ViewBag.total</span></li>
+                            }
+                        </ul>
+                        <div class="payment-method">
+                            <div class="custom-control custom-radio mr-sm-2">
+                                <input type="radio" class="custom-control-input" id="cashOnDelivery" name="PaymentMode" value="CashOnDelivery" asp-for="PaymentMode">
+                                <label class="custom-control-label" for="cashOnDelivery">Cash on Delivery </label>
+                            </div>
+                            <div class="custom-control custom-radio mr-sm-2">
+                                <input type="radio" class="custom-control-input" id="paypal" name="PaymentMode" value="Paypal" asp-for="PaymentMode">
+                                <label class="custom-control-label" for="paypal">Paypal <img class="ml-15" src="~/img/core-img/your-image.png" alt=""></label>
+                            </div>
+                        </div>
+                        <div class="cart-btn mt-100">
+                            <button type="button" class="btn amado-btn w-100" onclick="submitForm()">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelectorAll('input[name="PaymentMode"]').forEach(function (radio) {
+            radio.addEventListener('change', function () {
+                var selectedPaymentMode = document.querySelector('input[name="PaymentMode"]:checked').value;
+                // Set the value of the hidden input field
+                document.getElementById('PaymentMode').value = selectedPaymentMode;
+            });
+        });
+
+        function submitForm() {
+            document.getElementById('checkoutForm').submit();
+        }
+    </script>
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/active.js"></script>
+</body>
+</html>

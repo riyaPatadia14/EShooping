@@ -14,8 +14,8 @@ namespace DataAccessLayer.Models.OrdersSet
         public string Mobile { get; set; } = string.Empty;
         public string Comment { get; set; } = string.Empty;
         public DateTime OrderDate { get; set; } = DateTime.Now;
-        public decimal OrderAmount { get; set; } = 0;
-        public int PaymentMode { get; set; } = 0;
+        public decimal OrderAmount { get; set; }
+        public string PaymentMode { get; set; } = string.Empty;
         public bool IsDelete { get; set; }
         public ICollection<OrderDetailsModel> OrderDetails { get; set; }
     }

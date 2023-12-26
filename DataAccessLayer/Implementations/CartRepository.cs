@@ -1,22 +1,27 @@
-﻿using DataAccessLayer.Data;
-using DataAccessLayer.GenericRepo;
+﻿using DataAccessLayer.GenericRepo;
 using DataAccessLayer.Interface;
 using DataAccessLayer.Models.OrderDetailsSet;
+using DataAccessLayer.Models.OrderDetailsSet.Dto;
 
 namespace DataAccessLayer.Implementations
 {
     public class CartRepository : ICart
     {
         private readonly IGenericRepository<OrderDetailsModel> _genericRepository;
-        private readonly EShoppingDbContext _eShoppingDbContext;
-        public CartRepository(EShoppingDbContext eShoppingDbContext)
+        public CartRepository()
         {
-            _eShoppingDbContext= eShoppingDbContext;
         }
-        private bool HasCart(string productId)
+        public async Task AddCartProducts(OrderDetailsAddDto orderDetailsAdd)
         {
-            var result = _eShoppingDbContext.OrderDetails.FirstOrDefault();
-            return result == null;
+            var orderDetailsAddToCart = new OrderDetailsModel
+            {
+                Id = orderDetailsAdd.Id,
+                OrdersId = orderDetailsAdd.OrdersId,
+                ProductId = orderDetailsAdd.ProductId,
+                Qty = orderDetailsAdd.Qty,
+                UnitPrice = orderDetailsAdd.UnitPrice,
+            };
+            await _genericRepository.Add(orderDetailsAddToCart);
         }
     }
 }

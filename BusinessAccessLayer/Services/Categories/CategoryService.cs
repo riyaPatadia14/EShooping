@@ -15,28 +15,82 @@ namespace BusinessAccessLayer.Services.Categories
         }
         public async Task CategoryAdd(CategoryAddDto addcategory)
         {
-            await _categoryRepository.AddCategory(addcategory);
+            try
+            {
+
+                await _categoryRepository.AddCategory(addcategory);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         public async Task CategoryDelete(CategoriesModel category)
         {
-            await _categoryRepository.DeleteCategory(category);
+            try
+            {
+                await _categoryRepository.DeleteCategory(category);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         public async Task CategoryUpdate(CategoryViewDto category)
         {
-            await _categoryRepository.UpdateCategory(category);
+            try
+            {
+
+                await _categoryRepository.UpdateCategory(category);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         public async Task<PaginatedList<CategoryListDto>> GetAllCategory(int? pageNumber)
         {
-            return await _categoryRepository.GetAllCategories(pageNumber);
+            try
+            {
+
+                return await _categoryRepository.GetAllCategories(pageNumber);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
         public CategoryViewDto GetCategoryById(int id)
         {
-            return _categoryRepository.GetCategoryById(id);
+            try
+            {
+
+                return _categoryRepository.GetCategoryById(id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public async Task<List<SelectListItem>> GetCategoryList()
         {
-            return await _categoryRepository.GetCategoryList();
+            try
+            {
+
+                return await _categoryRepository.GetCategoryList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }
