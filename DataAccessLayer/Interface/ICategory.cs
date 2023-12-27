@@ -13,5 +13,6 @@ namespace DataAccessLayer.Interface
         Task UpdateCategory(CategoryViewDto category);
         Task DeleteCategory(CategoriesModel category);
         Task<List<SelectListItem>> GetCategoryList();
+        Task DeleteCategory(CategoryViewDto category);
     }
 }

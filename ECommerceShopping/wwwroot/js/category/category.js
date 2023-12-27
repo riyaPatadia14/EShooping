@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
     $('#chooseImg').change(function (e) {
-        debugger;
         var url = $('#chooseImg').val();
         var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
         if (e.target.files && e.target.files[0] && (ext == 'gif' || ext == 'jpg' || ext == 'jfif' || ext == 'png' || ext == 'bmp')) {

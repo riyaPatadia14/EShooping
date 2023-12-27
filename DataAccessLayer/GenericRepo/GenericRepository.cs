@@ -30,7 +30,6 @@ namespace DataAccessLayer.GenericRepo
             {
                 _eShoppingDbContext.Set<T>().Find(obj);
                 _eShoppingDbContext.Set<T>().Remove(obj);
-                _eShoppingDbContext.SaveChanges();
             }
             catch (Exception)
             {

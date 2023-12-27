@@ -108,9 +108,5 @@ namespace ECommerceShopping.Controllers
                 throw;
             }
         }
-        //[HttpPost]
-        //public async Task<IActionResult> Create()
-        //{
-        //}
     }
 }

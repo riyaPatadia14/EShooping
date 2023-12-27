@@ -1,11 +1,5 @@
-﻿// Edit Modal Pop-Up
-
-//Delete Model pop-Up
-$("#deleteFormAction").click(function () {
-    $("#deleteModal").modal('show');
-})
-
-//Details Model Pop-Up
+﻿
+//Details, Edit and Delete Model Pop-Up
 $(function () {
     var PlaceHoldeElement = $('#PlaceHolderHere');
     $('button[data-toggle="ajax-modal"]').click(function (event) {
@@ -19,13 +13,14 @@ $(function () {
     PlaceHoldeElement.on('click', '[data-save="modal"]', function (event) {
         var form = $(this).parents('.modal').find('form');
         var actionUrl = form.attr('action');
-        var url = "/CategoryController/Details/" + actionUrl;
+        var url = "/CategoryController/" + actionUrl;
         var sendData = form.serialize();
         $.post(url, sendData).done(function (data) {
             PlaceHoldeElement.find('.modal').modal('hide');
         })
     })
 })
+
 
 // Create Model Pop-Up
 function AddCategory() {
@@ -68,3 +63,6 @@ $(document).ready(function () {
         output.src = url;
     });
 });
+
+
+

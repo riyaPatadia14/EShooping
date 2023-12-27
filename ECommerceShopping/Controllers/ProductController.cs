@@ -33,7 +33,7 @@ namespace ECommerceShopping.Controllers
             try
             {
                 var productDropDown = await _productService.ProductDropDown(new ProductAddDto());
-                return View(productDropDown);
+                return PartialView("_Create", productDropDown);
             }
             catch (Exception)
             {
@@ -67,7 +67,7 @@ namespace ECommerceShopping.Controllers
                 var productById = await _productService.GetProductsById(Id);
                 if (productById != null)
                 {
-                    return View(productById);
+                    return PartialView("_Details", productById);
                 }
                 return RedirectToAction("Index");
             }
@@ -85,7 +85,7 @@ namespace ECommerceShopping.Controllers
                 var productById = await _productService.GetProductsById(Id);
                 if (productById != null)
                 {
-                    return View(productById);
+                    return PartialView("_Details", productById);
                 }
                 return RedirectToAction("Index");
             }
@@ -104,7 +104,6 @@ namespace ECommerceShopping.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -113,11 +112,10 @@ namespace ECommerceShopping.Controllers
         {
             try
             {
-                return View();
+                return PartialView("_Delete");
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -131,7 +129,6 @@ namespace ECommerceShopping.Controllers
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

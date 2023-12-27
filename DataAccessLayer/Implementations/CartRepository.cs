@@ -8,10 +8,11 @@ namespace DataAccessLayer.Implementations
     public class CartRepository : ICart
     {
         private readonly IGenericRepository<OrderDetailsModel> _genericRepository;
-        public CartRepository()
+        public CartRepository(IGenericRepository<OrderDetailsModel> genericRepository)
         {
+            _genericRepository = genericRepository;
         }
-        public async Task AddCartProducts(OrderDetailsAddDto orderDetailsAdd)
+        public async Task AddCartProducts(OrderDetailsListDto orderDetailsAdd)
         {
             var orderDetailsAddToCart = new OrderDetailsModel
             {

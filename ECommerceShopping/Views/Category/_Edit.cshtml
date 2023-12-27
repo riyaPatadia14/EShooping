@@ -33,7 +33,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Image</label>
-                            <img src="~/img/category-img/@Model.ImagePath" style="width:100px; height:100px" id="imgPreview" autocomplete="off" name="ImagePath" asp-for="ImagePath" />
+                            <img src="~/img/category-img/@Model.ImagePath" style="width:100px; height:100px" class="border border-white rounded-3" id="imgPreview" autocomplete="off" name="ImagePath" asp-for="ImagePath" />
                             <input type="hidden" class="form-control" id="updateId" aria-describedby="emailHelp" name="ImagePath" asp-for="ImagePath">
                         </div>
                         <br />
@@ -50,25 +50,7 @@
             </div>
         </div>
     </div>
-    @section scripts{
-        <script src="~/js/category/category.js"></script>
-        <script>
-            $(document).ready(function () {
-                $('#chooseImg').change(function (e) {
-                    debugger
-                    var url = $('#chooseImg').val();
-                    var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
-                    if (chooseImg.files && chooseImg.files[0] && (ext == 'gif' || ext == 'jpg' || ext == 'jfif' || ext == 'png' || ext == 'bmp')) {
-                        var reader = new FileReader();
-                        reader.onload = function () {
-                            var output = document.getElementById('imgPreview');
-                            output.src = reader.result;
-                        }
-                        reader.readAsDataURL(e.target.files[0]);
-                    }
-                })
-            });
-        </script>
-    }
+    <script src="~/js//category/category.js"></script>
+   
 </body>
 </html>

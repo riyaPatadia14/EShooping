@@ -51,7 +51,7 @@ namespace ECommerceShopping.Controllers
                 var categoryById = _categoryService.GetCategoryById(Id);
                 if (categoryById != null)
                 {
-                    return PartialView("_Details",categoryById);
+                    return PartialView("_Details", categoryById);
                 }
                 return RedirectToAction("Index");
             }
@@ -80,16 +80,37 @@ namespace ECommerceShopping.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(CategoryViewDto category)
         {
-            var categoryUpdate = _categoryService.CategoryUpdate(category);
-            if (categoryUpdate != null)
+            if (category != null)
             {
-                return PartialView("_Edit",categoryUpdate);
+                await _categoryService.CategoryUpdate(category);
             }
             return RedirectToAction("Index");
         }
-        public IActionResult Delete()
+        [HttpGet]
+        public IActionResult Delete(int Id)
         {
-            return PartialView("_Delete");
+            try
+            {
+                var categoryById = _categoryService.GetCategoryById(Id);
+                if (categoryById != null)
+                {
+                    return PartialView("_Delete", categoryById);
+                }
+                return RedirectToAction("Index");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpPost]
+        public async Task<IActionResult> Delete(CategoryViewDto category)
+        {
+            if (category != null)
+            {
+                await _categoryService.CategoryDelete(category);
+            }
+            return RedirectToAction("Index");
         }
     }
 }

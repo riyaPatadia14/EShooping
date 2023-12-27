@@ -26,18 +26,9 @@ namespace BusinessAccessLayer.Services.Categories
                 throw;
             }
         }
-        public async Task CategoryDelete(CategoriesModel category)
+        public async Task CategoryDelete(CategoryViewDto category)
         {
-            try
-            {
-                await _categoryRepository.DeleteCategory(category);
-
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+           await _categoryRepository.DeleteCategory(category);
         }
         public async Task CategoryUpdate(CategoryViewDto category)
         {

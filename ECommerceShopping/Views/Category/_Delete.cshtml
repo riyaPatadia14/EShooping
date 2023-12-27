@@ -18,12 +18,15 @@
                 <div class="modal-body" id="details-modal">
                     <form asp-action="Delete" method="post" id="deleteForm">
                         <div class="modal-body">
-                            Are sure you want delete the category?
+                            Are sure you want delete this category?
                         </div>
-                        <div class="d-flex justify-content-center" >
-
+                        <input type="hidden" class="form-control" id="categoryName" aria-describedby="emailHelp" name="CategoryName" asp-for="CategoryName" autocomplete="off">
+                        <input type="hidden" class="form-control" id="updateId" aria-describedby="emailHelp" name="Id" asp-for="Id">
+                        <input type="hidden" class="form-control" id="updateId" aria-describedby="emailHelp" name="ImagePath" asp-for="ImagePath">
+                        <input class="form-check-input" type="hidden" id="activeSwitch" checked name="Active" asp-for="Active" autocomplete="off">
+                        <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btn-close">Close</button> &nbsp;
-                            <button type="button" class="btn btn-primary" id="btn-delete">Delete</button>
+                            <button type="submit" class="btn btn-primary" id="btn-delete">Delete</button>
                         </div>
                     </form>
                 </div>

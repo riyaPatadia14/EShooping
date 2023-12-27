@@ -9,9 +9,9 @@ namespace BusinessAccessLayer.Services.Categories
     {
         Task CategoryAdd(CategoryAddDto addcategory);
         Task CategoryUpdate(CategoryViewDto category);
-        Task CategoryDelete(CategoriesModel category);
         CategoryViewDto GetCategoryById(int id);
         Task<PaginatedList<CategoryListDto>> GetAllCategory(int? pageNumber);
         Task<List<SelectListItem>> GetCategoryList();
+        Task CategoryDelete(CategoryViewDto category);
     }
 }
