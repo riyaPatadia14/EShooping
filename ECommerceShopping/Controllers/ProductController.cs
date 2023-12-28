@@ -48,7 +48,7 @@ namespace ECommerceShopping.Controllers
             try
             {
                 if (productAdd != null)
-                {
+                {   
                     await _productService.ProductAdd(productAdd);
                 }
                 return RedirectToAction("Index");
@@ -85,7 +85,7 @@ namespace ECommerceShopping.Controllers
                 var productById = await _productService.GetProductsById(Id);
                 if (productById != null)
                 {
-                    return PartialView("_Details", productById);
+                    return PartialView("_Edit", productById);
                 }
                 return RedirectToAction("Index");
             }

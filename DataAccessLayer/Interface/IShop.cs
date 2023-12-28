@@ -5,7 +5,7 @@ namespace DataAccessLayer.Interface
 {
     public interface IShop
     {
-        Task<PaginatedList<ShopProductListDto>> GetClientProductList(int? pageNumber);
+        Task<PaginatedList<ShopProductListDto>> GetClientProductList(int id, int? pageNumber);
         Task<ShopProductViewDto> GetClientProductsById(int id);
     }
 }

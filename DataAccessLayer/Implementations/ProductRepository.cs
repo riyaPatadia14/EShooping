@@ -152,22 +152,49 @@ namespace DataAccessLayer.Implementations
             try
             {
                 var productId = await GetProductsById(products.Id);
-                if (productId != null)
+                if (products.ImageFile != null)
                 {
-                    var productUpdate = new ProductsModel()
+                    var path = _hostingEnvironment.WebRootPath;
+                    var filePath = "img/product-list-img/" + products.ImageFile.FileName;
+                    var fullPath = Path.Combine(path, filePath);
+                    UploadFile(products.ImageFile, fullPath);
+                    if (productId != null)
                     {
-                        Id = products.Id,
-                        Title = products.Title,
-                        Description = products.Description,
-                        InStock = products.InStock,
-                        CategoriesId = products.CategoriesId,
-                        BrandsId = products.BrandsId,
-                        ColorId = products.ColorId,
-                        Price = products.Price,
-                        ImagePath = products.ImageFile != null ? products.ImageFile.FileName : productId.ImagePath,
-                        IsActive = products.IsActive
-                    };
-                    await _genericRepository.Update(productUpdate);
+                        var productUpdate = new ProductsModel()
+                        {
+                            Id = products.Id,
+                            Title = products.Title,
+                            Description = products.Description,
+                            InStock = products.InStock,
+                            CategoriesId = products.CategoriesId,
+                            BrandsId = products.BrandsId,
+                            ColorId = products.ColorId,
+                            Price = products.Price,
+                            ImagePath = products.ImageFile.FileName,
+                            IsActive = products.IsActive
+                        };
+                        await _genericRepository.Update(productUpdate);
+                    }
+                }
+                else
+                {
+                    if (productId != null)
+                    {
+                        var productUpdate = new ProductsModel()
+                        {
+                            Id = products.Id,
+                            Title = products.Title,
+                            Description = products.Description,
+                            InStock = products.InStock,
+                            CategoriesId = products.CategoriesId,
+                            BrandsId = products.BrandsId,
+                            ColorId = products.ColorId,
+                            Price = products.Price,
+                            ImagePath = products.ImagePath,
+                            IsActive = products.IsActive
+                        };
+                        await _genericRepository.Update(productUpdate);
+                    }
                 }
             }
             catch (Exception)

@@ -35,7 +35,10 @@ namespace ECommerceShopping.Controllers
         {
             try
             {
-                await _categoryService.CategoryAdd(categoryAdd);
+                if (!ModelState.IsValid)
+                {
+                    await _categoryService.CategoryAdd(categoryAdd);
+                }
                 return RedirectToAction("Index");
             }
             catch (Exception)
@@ -68,6 +71,7 @@ namespace ECommerceShopping.Controllers
                 var categoryById = _categoryService.GetCategoryById(Id);
                 if (categoryById != null)
                 {
+
                     return PartialView("_Edit", categoryById);
                 }
                 return RedirectToAction("Index");
@@ -80,9 +84,12 @@ namespace ECommerceShopping.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(CategoryViewDto category)
         {
-            if (category != null)
+            if (!ModelState.IsValid)
             {
-                await _categoryService.CategoryUpdate(category);
+                if (category != null)
+                {
+                    await _categoryService.CategoryUpdate(category);
+                }
             }
             return RedirectToAction("Index");
         }

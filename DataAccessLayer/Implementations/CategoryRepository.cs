@@ -77,7 +77,7 @@ namespace DataAccessLayer.Implementations
                    CategoryName = x.CategoryName,
                    ImagePath = x.ImagePath,
                    Active = x.IsActive,
-                   IsDelete= x.IsDelete,
+                   IsDelete = x.IsDelete,
                }).ToList();
                 int pageSize = 4;
                 return await PaginatedList<CategoryListDto>.CreateAsync(categoryList, pageNumber ?? 1, pageSize);
@@ -155,6 +155,7 @@ namespace DataAccessLayer.Implementations
             {
                 var category = await _genericRepository.GetAll();
                 var categoryList = category
+               .Where(x => x.IsDelete == false)
                .Select(x => new SelectListItem()
                {
                    Value = x.Id.ToString(),
@@ -175,7 +176,7 @@ namespace DataAccessLayer.Implementations
             {
                 Id = category.Id,
                 CategoryName = category.CategoryName,
-                ImagePath= category.ImagePath,
+                ImagePath = category.ImagePath,
                 IsActive = category.Active,
                 IsDelete = category.IsDelete,
             };

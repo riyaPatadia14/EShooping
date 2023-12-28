@@ -20,7 +20,7 @@
                 @foreach (SelectListItem category in ViewBag.Categories)
                 {
                     <ul>
-                        <li><a href="#" for="@($"category_{category.Value}")" value="@category.Value">@category.Text</a></li>
+                        <li><a href="@Url.Action("Index", "Shop", new { id = category.Value })">@category.Text</a></li>
                     </ul>
                 }
             </div>
@@ -30,13 +30,13 @@
             <div class="widget-desc">
                 @foreach (SelectListItem brand in ViewBag.Brands)
                 {
-
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="@brand.Value" id="@($"brand_{brand.Value}")" name="BrandRadio">
+                        <input class="form-check-input" type="radio" value="@brand.Value" data-id="@brand.Value" id="@($"brand_{brand.Value}")" name="BrandRadio" onclick="handleRadioClick(this)">
                         <label class="form-check-label" for="@($"brand_{brand.Value}")">@brand.Text</label>
                     </div>
                 }
             </div>
+
         </div>
         <div class="widget color mb-50">
             <h6 class="widget-title mb-30">Color</h6>
@@ -45,7 +45,7 @@
                     @foreach (SelectListItem color in ViewBag.Colors)
                     {
                         <li>
-                            <a href="#" class="color1" style="background-color: @color.Group.Name; " id="@($"color_{color.Group.Name}")">
+                            <a href="@Url.Action("Index", "Shop", new { id = color.Value })" class="color1" style="background-color: @color.Group.Name; " id="@($"color_{color.Group.Name}")">
                             </a>
                         </li>
                     }
@@ -53,7 +53,6 @@
             </div>
         </div>
     </div>
-
     <div class="amado_product_area section-padding-100">
         <div class="container-fluid">
             <div class="row">
@@ -75,13 +74,13 @@
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
                             <div class="product-img">
-                                <img src="~/img/category-img/@item.ImagePath" onclick="location.href='@Url.Action("Details", "Client", new { id = item.Id })'"  />
+                                <img src="~/img/product-list-img/@item.ImagePath" onclick="@Url.Action("Details", "Shop", new { id = item.Id })" />
                             </div>
                             <div class="product-description d-flex align-items-center justify-content-between">
                                 <div class="product-meta-data">
                                     <div class="line"></div>
                                     <p class="product-price">@item.Price</p>
-                                    <a href="Client/Details">
+                                    <a href="Shop/Details/@item.Id">
                                         <h6>@item.Title</h6>
                                     </a>
                                 </div>
@@ -124,7 +123,28 @@
             </div>
         </div>
     </div>
+
     @section scripts{
+        @*        <script>
+    function handleRadioClick(radioButton) {
+    var brandId = $(radioButton).data('id');
+    sendToController(brandId);
+    }
+
+    function sendToController(brandId) {
+    $.ajax({
+    url: '@Url.Action("Index", "Shop")',
+    type: 'GET',
+    data: { id: brandId },
+    success: function (result) {
+    console.log(result);
+    },
+    error: function (error) {
+    console.error(error);
+    }
+    });
+    }
+    </script>*@
         <script src="js/jquery/jquery-2.2.4.min.js"></script>
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>

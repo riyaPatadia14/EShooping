@@ -40,14 +40,14 @@
                         <td><img src="~/img/category-img/@item.ImagePath" style="width:100px; height:100px" class="border border-white rounded-3" /></td>
                         <td>@item.Active</td>
                         <td>
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#btnDetailModal" id="btnDetailModal" data-url="@Url.Action($"Details/{item.Id}")">
-                                Details
+                            <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#btnDetailModal" id="btnDetailModal" data-url="@Url.Action($"Details/{item.Id}")">
+                                <i class="fa fa-info" aria-hidden="true"></i>
                             </button>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#editCategory" id="btnEditModal" data-url="@Url.Action($"Edit/{item.Id}")">
-                                Edit
+                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#editCategory" id="btnEditModal" data-url="@Url.Action($"Edit/{item.Id}")">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#deleteCategory" data-url="@Url.Action($"Delete/{item.Id}")">
-                                Delete
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#deleteCategory" data-url="@Url.Action($"Delete/{item.Id}")">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </td>
                     </tr>
