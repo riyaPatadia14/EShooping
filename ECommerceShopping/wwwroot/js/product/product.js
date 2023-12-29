@@ -1,5 +1,4 @@
 ﻿$(document).ready(function () {
-    debugger;
     $('#chooseImg').change(function (e) {
         var url = $('#chooseImg').val();
         var ext = url.substring(url.lastIndexOf('.') + 1).toLowerCase();

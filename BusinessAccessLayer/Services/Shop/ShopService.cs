@@ -1,5 +1,6 @@
 ﻿using DataAccessLayer.Helper;
 using DataAccessLayer.Interface;
+using DataAccessLayer.Models.ProductSet.Dto;
 using DataAccessLayer.Models.ShopSet;
 
 namespace BusinessAccessLayer.Services.Client
@@ -22,7 +23,7 @@ namespace BusinessAccessLayer.Services.Client
                 throw;
             }
         }
-        public async Task<ShopProductViewDto> GetClientProductById(int id)
+        public async Task<ProductAddToCartDto> GetClientProductById(int id)
         {
             try
             {

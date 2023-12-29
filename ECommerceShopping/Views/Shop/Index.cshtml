@@ -74,7 +74,7 @@
                     <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                         <div class="single-product-wrapper">
                             <div class="product-img">
-                                <img src="~/img/product-list-img/@item.ImagePath" onclick="@Url.Action("Details", "Shop", new { id = item.Id })" />
+                                <img src="~/img/product-list-img/@item.ImagePath" onclick="redirectToDetails(@item.Id)" />
                             </div>
                             <div class="product-description d-flex align-items-center justify-content-between">
                                 <div class="product-meta-data">
@@ -123,6 +123,13 @@
             </div>
         </div>
     </div>
+    <script>
+        function redirectToDetails(productId) {
+            // Use window.location.href to navigate to the specified URL
+            var url = '@Url.Action("Details", "shop")' + '?id=' + productId;
+            window.location.href = url;
+        }
+    </script>
 
     @section scripts{
         @*        <script>

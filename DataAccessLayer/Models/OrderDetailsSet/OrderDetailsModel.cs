@@ -10,6 +10,6 @@ namespace DataAccessLayer.Models.OrderDetailsSet
         public int Qty { get; set; } = 0;
         public decimal UnitPrice { get; set; }
         public bool IsDelete { get; set; }
-        public OrdersModel Orders { get; set; } = new OrdersModel();
+        public OrdersModel Orders { get; set; }
     }
 }

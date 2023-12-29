@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAccessLayer.Models.ProductSet.Dto
 {
-    public class ProductAddDto
+    public class ProductAddDto 
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Please Enter Title")]

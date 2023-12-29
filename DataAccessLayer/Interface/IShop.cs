@@ -1,4 +1,5 @@
 ﻿using DataAccessLayer.Helper;
+using DataAccessLayer.Models.ProductSet.Dto;
 using DataAccessLayer.Models.ShopSet;
 
 namespace DataAccessLayer.Interface
@@ -6,6 +7,6 @@ namespace DataAccessLayer.Interface
     public interface IShop
     {
         Task<PaginatedList<ShopProductListDto>> GetClientProductList(int id, int? pageNumber);
-        Task<ShopProductViewDto> GetClientProductsById(int id);
+        Task<ProductAddToCartDto> GetClientProductsById(int id);
     }
 }

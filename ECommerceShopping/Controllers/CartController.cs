@@ -1,5 +1,7 @@
-﻿using BusinessAccessLayer.Services.Products;
+﻿using BusinessAccessLayer.Services.Cart;
+using BusinessAccessLayer.Services.Products;
 using DataAccessLayer.Helper;
+using DataAccessLayer.Models.OrdersSet.Dto;
 using DataAccessLayer.Models.ProductSet.Dto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,9 +10,11 @@ namespace ECommerceShopping.Controllers
     public class CartController : Controller
     {
         private readonly IProductService _productService;
-        public CartController(IProductService productService)
+        private readonly ICartService _cartService;
+        public CartController(IProductService productService, ICartService cartService)
         {
             _productService = productService;
+            _cartService = cartService;
         }
         public IActionResult Index()
         {
@@ -140,6 +144,18 @@ namespace ECommerceShopping.Controllers
                     return RedirectToAction("Index", "Shop");
                 }
                 return RedirectToAction("Index", "Cart");
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public async Task<IActionResult> List(int? pageNumber)
+        {
+            try
+            {
+                var orderDetailsList = await _cartService.GetAllOrderDetails(pageNumber);
+                return View(orderDetailsList);
             }
             catch (Exception)
             {
