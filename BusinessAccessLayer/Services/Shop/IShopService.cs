@@ -8,5 +8,6 @@ namespace BusinessAccessLayer.Services.Client
     {
         Task<PaginatedList<ShopProductListDto>> GetClientProductList(int id, int? pageNumber);
         Task<ProductAddToCartDto> GetClientProductById(int Id);
+        Task<IList<ProductHomeDto>> LowestProductPriceList();
     }
 }

@@ -8,5 +8,6 @@ namespace DataAccessLayer.Interface
     {
         Task<PaginatedList<ShopProductListDto>> GetClientProductList(int id, int? pageNumber);
         Task<ProductAddToCartDto> GetClientProductsById(int id);
+        Task<IList<ProductHomeDto>> LowestProductPriceList();
     }
 }

@@ -20,6 +20,16 @@
                         <div class="modal-body">
                             Are sure you want delete the category?
                         </div>
+                        <input type="hidden" class="form-control" id="title" aria-describedby="emailHelp" name="Title" asp-for="Title" autocomplete="off">
+                        <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Id" asp-for="Id" disabled>
+                        <input type="hidden" class="form-control" id="title" aria-describedby="emailHelp" name="Price" asp-for="Price" autocomplete="off">
+                        <input type="hidden" class="form-control" id="title" aria-describedby="emailHelp" name="Description" asp-for="Description" autocomplete="off">
+                        <input type="hidden" id="inStock" name="InStock" asp-for="InStock" autocomplete="off">
+                        <input type="hidden" id="inActive" name="IsActive" asp-for="IsActive" autocomplete="off">
+                        <input type="hidden" class="form-control" aria-describedby="emailHelp" name="ImagePath" asp-for="ImagePath" autocomplete="off">
+                        <input type="hidden" class="form-control" aria-describedby="emailHelp" name="BrandsId" asp-for="BrandsId" autocomplete="off">
+                        <input type="hidden" class="form-control" aria-describedby="emailHelp" name="CategoriesId" asp-for="CategoriesId" autocomplete="off">
+                        <input type="hidden" class="form-control" aria-describedby="emailHelp" name="ColorId" asp-for="ColorId" autocomplete="off">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="btn-close">Close</button>
                             <button type="submit" class="btn btn-primary" id="btn-delete">Delete</button>
@@ -30,4 +40,3 @@
         </div>
     </div>
 </body>
-</html>

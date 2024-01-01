@@ -45,7 +45,18 @@
                                     <a href="#">Write A Review</a>
                                 </div>
                             </div>
-                            <p class="avaibility"><i class="fa fa-circle"></i> In Stock</p>
+                            <p class="avaibility">
+                                <i class="fa fa-circle" style="color: @(ViewBag.ProductDetails.InStock == true ? "green" : "red")"></i>
+                                @if (ViewBag.ProductDetails.InStock)
+                                {
+                                    <span> In Stock</span>
+                                }
+                                else
+                                {
+                                    <span> Out of Stock</span>
+                                }
+                            </p>
+
                         </div>
                         <div class="short_overview my-5">
                             <p>@ViewBag.ProductDetails.Description</p>
@@ -54,19 +65,28 @@
                             <div class="cart-btn d-flex mb-50">
                                 <p>Qty</p>
                                 <div class="quantity">
-                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
-                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value=@ViewBag.ProductDetails.Qty>
-                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+                                    <span class="qty-minus" onclick="updateQuantity('@Url.Action("ProductQuantity", "Cart", new { id = ViewBag.ProductDetails.Id, name="minus"})'); return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                    @*<input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="@( ViewBag.ProductQty != null ? ViewBag.ProductQty : 0)">*@
+                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="0">
+                                    @{
+                                        Console.WriteLine("Qty: ", ViewBag.ProductQty);
+                                    }
+                                    <span class="qty-plus" onclick="updateQuantity('@Url.Action("ProductQuantity", "Cart", new { id = ViewBag.ProductDetails.Id, name="add"})'); return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+                                    <input type="hidden" asp-for="ProductId" name="ProductId" />
                                 </div>
                             </div>
                             <button type="button" class="btn amado-btn" onclick="addToCart(@ViewBag.ProductDetails.Id)">Add to cart</button>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function updateQuantity(url) {
+            window.location.href = url;
+        }
+    </script>
     <script>
         function addToCart(productId) {
             $.ajax({

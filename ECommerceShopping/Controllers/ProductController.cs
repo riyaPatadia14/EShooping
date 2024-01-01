@@ -48,7 +48,7 @@ namespace ECommerceShopping.Controllers
             try
             {
                 if (productAdd != null)
-                {   
+                {
                     await _productService.ProductAdd(productAdd);
                 }
                 return RedirectToAction("Index");
@@ -108,11 +108,16 @@ namespace ECommerceShopping.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Delete()
+        public async Task<IActionResult> Delete(int Id)
         {
             try
             {
-                return PartialView("_Delete");
+                var productById = await _productService.GetProductsById(Id);
+                if (productById != null)
+                {
+                    return PartialView("_Delete", productById);
+                }
+                return RedirectToAction("Index");
             }
             catch (Exception)
             {

@@ -48,14 +48,13 @@
                                                 <div class="qty-btn d-flex">
                                                     <p>Qty</p>
                                                     <div class="quantity">
-                                                        <div class="quantity">
-                                                            <span class="qty-minus" onclick="updateQuantity('@Url.Action("ProductQuantity", "Cart", new { id = item.ProductId, name="minus"})'); return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                            <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="@item.Qty">
-                                                            <span class="qty-plus" onclick="updateQuantity('@Url.Action("ProductQuantity", "Cart", new { id = item.ProductId, name="add"})'); return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                            <input type="hidden" asp-for="@item.ProductId" name="ProductId" />
-                                                        </div>
+                                                        <span class="qty-minus" onclick="updateQuantity('@Url.Action("ProductQuantity", "Cart", new { id = item.ProductId, name="minus"})'); return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                                        <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="@item.Qty">
+                                                        <span class="qty-plus" onclick="updateQuantity('@Url.Action("ProductQuantity", "Cart", new { id = item.ProductId, name="add"})'); return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                                     </div>
-                                                    <a href="Cart/Remove/@item.ProductId" style="margin-left:42%;margin-top:3%;width: 20px;"> <i class="fa fa-trash-o fs-4 text-warning" aria-hidden="true"></i></a>
+                                                    @if(item.Qty == 1){
+                                                    <a href="Cart/Remove/@item.ProductId" style="margin-left:40%;margin-top:3%;width: 20px;"> <i class="fa fa-trash-o fs-4 text-warning" aria-hidden="true"></i></a>
+                                                    }
                                                 </div>
                                             </td>
                                         </tr>

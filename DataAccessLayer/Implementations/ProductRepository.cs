@@ -79,7 +79,17 @@ namespace DataAccessLayer.Implementations
             products.IsDelete = true;
             var deleteProduct = new ProductsModel
             {
+                Id= products.Id,
                 IsDelete = products.IsDelete,
+                Title = products.Title,
+                Description = products.Description,
+                CategoriesId = products.CategoriesId,
+                BrandsId = products.BrandsId,
+                ColorId = products.ColorId,
+                Price = products.Price,
+                ImagePath = products.ImagePath,
+                InStock = products.InStock,
+                IsActive = products.IsActive,
             };
             await _genericRepository.Update(deleteProduct);
         }
@@ -92,6 +102,7 @@ namespace DataAccessLayer.Implementations
                                    join color in _eShoppingDbContext.Colors on product.ColorId equals color.Id
                                    join brand in _eShoppingDbContext.Brands on product.BrandsId equals brand.Id
                                    join category in _eShoppingDbContext.Categories on product.CategoriesId equals category.Id
+                                   where product.IsDelete == false
                                    select new ProductListDto
                                    {
                                        Id = product.Id,
@@ -108,7 +119,7 @@ namespace DataAccessLayer.Implementations
                                        CategoryName = category.CategoryName,
                                        ColorName = color.ColorName
                                    }).ToList<ProductListDto>();
-                int pageSize = 10;
+                int pageSize = 4;
                 return await PaginatedList<ProductListDto>.CreateAsync(productList, pageNumber ?? 1, pageSize);
             }
             catch (Exception)

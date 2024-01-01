@@ -34,5 +34,18 @@ namespace BusinessAccessLayer.Services.Client
                 throw;
             }
         }
+
+        public async Task<IList<ProductHomeDto>> LowestProductPriceList()
+        {
+            try
+            {
+                return await _shopRepostiory.LowestProductPriceList();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }

@@ -31,13 +31,13 @@
                 @foreach (SelectListItem brand in ViewBag.Brands)
                 {
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="@brand.Value" data-id="@brand.Value" id="@($"brand_{brand.Value}")" name="BrandRadio" onclick="handleRadioClick(this)">
+                        <input class="form-check-input" type="radio" value="@brand.Value" data-id="@brand.Value" id="@($"brand_{brand.Value}")" name="BrandRadio">
                         <label class="form-check-label" for="@($"brand_{brand.Value}")">@brand.Text</label>
                     </div>
                 }
             </div>
-
         </div>
+
         <div class="widget color mb-50">
             <h6 class="widget-title mb-30">Color</h6>
             <div class="widget-desc">
@@ -61,8 +61,7 @@
                         <div class="total-products">
                             <p class="fw-bolder">Showing @((Model.PageIndex - 1) * Model.PageSize + 1) - @Math.Min(Model.PageIndex * Model.PageSize, Model.TotalItems) of @Model.TotalItems </p>
                             <div class="view d-flex">
-                                <a href="#"><i class="fa fa-th-large" aria-hidden="true"></i></a>
-                                <a href="#"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                                <a asp-controller="Shop" asp-action="Index" asp-route-id="0"><i class="fa fa-th-large" aria-hidden="true"></i></a>
                             </div>
                         </div>
                     </div>
@@ -130,33 +129,23 @@
             window.location.href = url;
         }
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var radioButtons = document.querySelectorAll('.form-check-input');
 
-    @section scripts{
-        @*        <script>
-    function handleRadioClick(radioButton) {
-    var brandId = $(radioButton).data('id');
-    sendToController(brandId);
-    }
-
-    function sendToController(brandId) {
-    $.ajax({
-    url: '@Url.Action("Index", "Shop")',
-    type: 'GET',
-    data: { id: brandId },
-    success: function (result) {
-    console.log(result);
-    },
-    error: function (error) {
-    console.error(error);
-    }
-    });
-    }
-    </script>*@
-        <script src="js/jquery/jquery-2.2.4.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/active.js"></script>
+            radioButtons.forEach(function (radio) {
+                radio.addEventListener('click', function () {
+                    var selectedBrandId = this.value;
+                    window.location.href = '/Shop/Index/' + selectedBrandId;
+                });
+            });
+        });
+    </script>
+    <script src="js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/active.js"></script>
     }
 </body>
 </html>

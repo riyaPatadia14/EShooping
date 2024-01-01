@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/ECommerceShopping.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.validation.unobtrusive/3.2.6/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        setTimeout(function () {
+            var successAlert = document.getElementById('successAlert');
+            if (successAlert) {
+                successAlert.remove();
+            }
+        }, 60000);
+    </script>
 </head>
 <body>
     @if (User.Identity.IsAuthenticated)
@@ -17,8 +28,17 @@
     }
     else
     {
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div id="successAlert" class="alert alert-warning alert-dismissible fade show" role="alert" style="height:5%">
+                <strong>Success!</strong> Your Product Successfully ordered :).
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
         <div class="main-content-wrapper d-flex clearfix">
             @Html.Partial("_Header")
+
+
             @RenderBody()
         </div>
         @Html.Partial("_Footer")

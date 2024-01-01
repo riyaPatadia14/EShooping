@@ -26,8 +26,10 @@ namespace ECommerceShopping.Controllers
                 {
                     var totalCartItem = cartItems.Sum(x => x.UnitPrice);
                     ViewBag.Data = cartItems;
-                    if (totalCartItem != null)
+                    var qtyValue = cartItems.Select(x => x.Qty);
+                    if (totalCartItem != null || qtyValue != null)
                     {
+                        ViewBag.ProductQty = qtyValue;
                         ViewBag.total = totalCartItem;
                     }
                 }
@@ -112,6 +114,7 @@ namespace ECommerceShopping.Controllers
                     addToCart.UnitPrice = addToCart.Price * addToCart.Qty;
                     cartItems.Add(addToCart);
                     HttpContext.Session.SetObjectAsJson("ComplexObject", cartItems);
+
                     return RedirectToAction("Index", "Shop");
                 }
                 return RedirectToAction("Index", "Cart");

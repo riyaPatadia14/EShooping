@@ -3,10 +3,7 @@ using DataAccessLayer.GenericRepo;
 using DataAccessLayer.Helper;
 using DataAccessLayer.Interface;
 using DataAccessLayer.Models.OrderDetailsSet;
-using DataAccessLayer.Models.OrderDetailsSet.Dto;
 using DataAccessLayer.Models.OrdersSet.Dto;
-using DataAccessLayer.Models.ShopSet;
-
 namespace DataAccessLayer.Implementations
 {
     public class CartRepository : ICart
@@ -45,7 +42,7 @@ namespace DataAccessLayer.Implementations
                                             FirstName = o.FirstName,
                                             LastName = o.LastName,
                                             Qty = od.Qty,
-                                            UnitPrice = od.UnitPrice,
+                                            UnitPrice = od.UnitPrice,   
                                             Title = p.Title,
                                             ImagePath = p.ImagePath
                                         }).ToList();
