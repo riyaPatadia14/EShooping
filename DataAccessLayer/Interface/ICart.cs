@@ -8,6 +8,6 @@ namespace DataAccessLayer.Interface
     public interface ICart
     {
         Task AddCartProducts(OrderAddDto orderDetailsAdd);
-        Task<PaginatedList<OrderListDto>> GetAllOrderDetails(int? pageNumber);
+        Task<PaginatedList<OrderListDto>> GetAllOrderDetails(int? pageNumber, string searchString);
     }
 }

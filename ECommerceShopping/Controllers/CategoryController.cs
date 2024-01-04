@@ -13,11 +13,13 @@ namespace ECommerceShopping.Controllers
         {
             _categoryService = categoryService;
         }
-        public async Task<IActionResult> Index(int? pageNumber)
+        public async Task<IActionResult> Index(int? pageNumber, string searchString)
         {
             try
             {
-                var categoryList = await _categoryService.GetAllCategory(pageNumber);
+                ViewData["CurrentFilter"] = searchString;
+
+                var categoryList = await _categoryService.GetAllCategory(pageNumber, searchString);
                 return View(categoryList);
             }
             catch (Exception)

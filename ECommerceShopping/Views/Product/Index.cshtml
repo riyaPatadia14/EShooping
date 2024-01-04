@@ -5,13 +5,25 @@
 }
 
 <div id="ProductPlaceHolderHere"></div>
-<div class="d-flex justify-content-center" style="padding-left:68%">
-    <button type="button" class="btn btn-primary" data-toggle="ajax-modal" data-target="#btnDetailProductModal" id="btnDetailProductModal" data-url="@Url.Action($"Create")">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-    </button>
-</div>
 <div class="container mt-3">
-    <h2>Product List</h2>
+    <div class="container">
+        <div class="row mb-2">
+            <div class="col-6">
+                <form class="d-flex" style="width:60%" asp-action="Index" asp-controller="Product">
+                    <input class="form-control me-2" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+            </div>
+            <div class="col">
+                <h5>Product List</h5>
+            </div>
+            <div class="col">
+                <button type="button" class="float-end  btn btn-outline-primary" data-toggle="ajax-modal" data-target="#btnDetailProductModal" id="btnDetailProductModal" data-url="@Url.Action($"Create")">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
     <table class="table table-bordered">
         <thead>
             <tr>
@@ -34,7 +46,7 @@
                     <td>@item.CategoryName</td>
                     <td>@item.BrandName</td>
                     <td>@item.ColorName</td>
-                    <td>@item.Price</td>
+                    <td><i class="fa fa-inr" aria-hidden="true"></i> @item.Price</td>
                     <td><img src="~/img/product-list-img/@item.ImagePath" style="width:100px; height:100px" class="border border-white rounded-3" /></td>
                     <td>@item.InStock</td>
                     <td>@item.IsActive</td>
@@ -59,21 +71,21 @@
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
-<div class="d-flex justify-content-center" style="padding-left:68%">
+<div class="d-flex justify-content-center" style="padding-left:52%">
 
-    <a asp-action="Index"
+    <a asp-action="Index" type="button"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex - 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @prevDisabled">
-        Previous
+        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
     </a>
-    <a asp-action="Index"
+    <a asp-action="Index" type="button"
        asp-route-sortOrder="@ViewData["CurrentSort"]"
        asp-route-pageNumber="@(Model.PageIndex + 1)"
        asp-route-currentFilter="@ViewData["CurrentFilter"]"
        class="btn btn-default @nextDisabled">
-        Next
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
     </a>
 </div>
 @section scripts{

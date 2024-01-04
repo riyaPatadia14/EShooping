@@ -7,7 +7,7 @@ namespace DataAccessLayer.Interface
 {
     public interface ICategory
     {
-        Task<PaginatedList<CategoryListDto>> GetAllCategories(int? pageNumber);
+        Task<PaginatedList<CategoryListDto>> GetAllCategories(int? pageNumber, string searchString);
         Task AddCategory(CategoryAddDto category);
         CategoryViewDto GetCategoryById(int id);
         Task UpdateCategory(CategoryViewDto category);

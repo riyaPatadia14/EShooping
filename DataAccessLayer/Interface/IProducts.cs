@@ -5,7 +5,7 @@
 
     public interface IProducts
     {
-        Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber);
+        Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber, string searchString);
         Task AddProduct(ProductAddDto products);
         Task<ProductViewDto> GetProductsById(int id);
         Task UpdateProduct(ProductViewDto products);

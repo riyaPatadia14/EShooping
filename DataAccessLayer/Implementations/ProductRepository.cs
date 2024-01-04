@@ -6,6 +6,8 @@ using DataAccessLayer.Models.ProductSet.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using DataAccessLayer.Helper;
+using Microsoft.EntityFrameworkCore;
+
 namespace DataAccessLayer.Implementations
 {
     public class ProductRepository : IProducts
@@ -93,7 +95,7 @@ namespace DataAccessLayer.Implementations
             };
             await _genericRepository.Update(deleteProduct);
         }
-        public async Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber)
+        public async Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber, string searchString)
         {
             try
             {
@@ -120,6 +122,17 @@ namespace DataAccessLayer.Implementations
                                        ColorName = color.ColorName
                                    }).ToList<ProductListDto>();
                 int pageSize = 4;
+
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    productList = productList.Where(p =>
+                        p.Title.Contains(searchString) ||
+                        p.Price.ToString().Contains(searchString) ||
+                        p.CategoryName.Contains(searchString) ||
+                        p.BrandName.Contains(searchString) ||
+                        p.ColorName.Contains(searchString)
+                    ).ToList();
+                }
                 return await PaginatedList<ProductListDto>.CreateAsync(productList, pageNumber ?? 1, pageSize);
             }
             catch (Exception)

@@ -64,7 +64,7 @@ namespace DataAccessLayer.Implementations
                 throw;
             }
         }
-        public async Task<PaginatedList<CategoryListDto>> GetAllCategories(int? pageNumber)
+        public async Task<PaginatedList<CategoryListDto>> GetAllCategories(int? pageNumber, string searchString)
         {
             try
             {
@@ -80,6 +80,12 @@ namespace DataAccessLayer.Implementations
                    IsDelete = x.IsDelete,
                }).ToList();
                 int pageSize = 4;
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    categoryList = categoryList.Where(p =>
+                        p.CategoryName.Contains(searchString) 
+                    ).ToList();
+                }
                 return await PaginatedList<CategoryListDto>.CreateAsync(categoryList, pageNumber ?? 1, pageSize);
             }
             catch (Exception)

@@ -8,7 +8,7 @@ namespace BusinessAccessLayer.Services.Products
         Task ProductAdd(ProductAddDto products);
         Task ProductUpdate(ProductViewDto products);
         Task<ProductViewDto> GetProductsById(int id);
-        Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber);
+        Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber, string searchString);
         Task<ProductAddDto> ProductDropDown(ProductAddDto products);
         Task ProductDelete(ProductViewDto products);
     }

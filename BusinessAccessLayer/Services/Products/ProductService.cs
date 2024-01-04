@@ -19,11 +19,11 @@ namespace BusinessAccessLayer.Services.Products
                 throw;
             }
         }
-        public async Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber)
+        public async Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber, string searchString)
         {
             try
             {
-                return await _productRepository.GetAllProducts(pageNumber);
+                return await _productRepository.GetAllProducts(pageNumber, searchString);
             }
             catch (Exception)
             {

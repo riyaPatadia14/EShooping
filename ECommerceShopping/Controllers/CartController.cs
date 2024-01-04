@@ -1,8 +1,8 @@
 ﻿using BusinessAccessLayer.Services.Cart;
 using BusinessAccessLayer.Services.Products;
 using DataAccessLayer.Helper;
-using DataAccessLayer.Models.OrdersSet.Dto;
 using DataAccessLayer.Models.ProductSet.Dto;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ECommerceShopping.Controllers
@@ -16,7 +16,21 @@ namespace ECommerceShopping.Controllers
             _productService = productService;
             _cartService = cartService;
         }
-        public IActionResult Index()
+        [Authorize]
+        public async Task<IActionResult> Index(int? pageNumber, string searchString)
+        {
+            try
+            {
+                ViewData["CurrentFilter"] = searchString;
+                var orderDetailsList = await _cartService.GetAllOrderDetails(pageNumber, searchString);
+                return View(orderDetailsList);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public IActionResult Details()
         {
             try
             {
@@ -27,7 +41,7 @@ namespace ECommerceShopping.Controllers
                     var totalCartItem = cartItems.Sum(x => x.UnitPrice);
                     ViewBag.Data = cartItems;
                     var qtyValue = cartItems.Select(x => x.Qty);
-                    if (totalCartItem != null || qtyValue != null)
+                    if (totalCartItem != 0 || qtyValue != null)
                     {
                         ViewBag.ProductQty = qtyValue;
                         ViewBag.total = totalCartItem;
@@ -71,7 +85,7 @@ namespace ECommerceShopping.Controllers
                     HttpContext.Session.SetObjectAsJson("ComplexObject", cartItems);
                     return RedirectToAction("Index", "Shop");
                 }
-                return RedirectToAction("Index", "Cart");
+                return RedirectToAction("Details", "Cart");
             }
             catch (Exception)
             {
@@ -117,7 +131,7 @@ namespace ECommerceShopping.Controllers
 
                     return RedirectToAction("Index", "Shop");
                 }
-                return RedirectToAction("Index", "Cart");
+                return RedirectToAction("Details", "Cart");
             }
             catch (Exception)
             {
@@ -128,7 +142,7 @@ namespace ECommerceShopping.Controllers
         {
             try
             {
-                var productById = await _productService.GetProductsById(id);
+                var productById = await _productService.GetProductsById(id);    
                 ProductAddToCartDto addToCart = new ProductAddToCartDto()
                 {
                     ProductId = id,
@@ -146,19 +160,7 @@ namespace ECommerceShopping.Controllers
                     HttpContext.Session.SetObjectAsJson("ComplexObject", cartItems);
                     return RedirectToAction("Index", "Shop");
                 }
-                return RedirectToAction("Index", "Cart");
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        public async Task<IActionResult> List(int? pageNumber)
-        {
-            try
-            {
-                var orderDetailsList = await _cartService.GetAllOrderDetails(pageNumber);
-                return View(orderDetailsList);
+                return RedirectToAction("Details", "Cart");
             }
             catch (Exception)
             {

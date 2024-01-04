@@ -43,12 +43,12 @@ namespace BusinessAccessLayer.Services.Categories
                 throw;
             }
         }
-        public async Task<PaginatedList<CategoryListDto>> GetAllCategory(int? pageNumber)
+        public async Task<PaginatedList<CategoryListDto>> GetAllCategory(int? pageNumber, string searchString)
         {
             try
             {
 
-                return await _categoryRepository.GetAllCategories(pageNumber);
+                return await _categoryRepository.GetAllCategories(pageNumber, searchString);
             }
             catch (Exception)
             {

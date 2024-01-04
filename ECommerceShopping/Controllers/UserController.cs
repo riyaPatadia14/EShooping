@@ -22,41 +22,55 @@ namespace ECommerceShopping.Controllers
         [HttpPost]
         public IActionResult Login(UsersModel user)
         {
-            var data = _eShoppingDbContext.Users.Where(x => x.Email == user.Email && x.Password == user.Password).SingleOrDefault();
-            if (data != null && data.IsAdmin == true)
+            try
             {
-                bool isValid = (data.Email == user.Email && data.Password == user.Password);
-                if (isValid)
+                var data = _eShoppingDbContext.Users.Where(x => x.Email == user.Email && x.Password == user.Password).SingleOrDefault();
+                if (data != null && data.IsAdmin == true)
                 {
+                    bool isValid = (data.Email == user.Email && data.Password == user.Password);
+                    if (isValid)
+                    {
 
-                    var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.Email) }, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.Email) }, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    var principal = new ClaimsPrincipal(identity);
-                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
-                    HttpContext.Session.SetString("Name", data.FirstName + data.LastName);
-                    HttpContext.Session.SetString("Email", user.Email);
-                    HttpContext.Session.SetString("Password", user.Password);
-                    return RedirectToAction("Index", "Category");
+                        var principal = new ClaimsPrincipal(identity);
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+                        HttpContext.Session.SetString("Name", data.FirstName + data.LastName);
+                        HttpContext.Session.SetString("Email", user.Email);
+                        HttpContext.Session.SetString("Password", user.Password);
+                        return RedirectToAction("Index", "Category");
+                    }
                 }
+                else
+                {
+                    TempData["errorMessage"] = "Invalid Email";
+                    TempData["errorMessage"] = "Invalid Password";
+                    return RedirectToAction("Index", "Home");
+                }
+                return View();
             }
-            else
+            catch (Exception)
             {
-                TempData["errorMessage"] = "Invalid Email";
-                TempData["errorMessage"] = "Invalid Password";
-                return RedirectToAction("Index", "Home");
+                throw;
             }
-            return View();
         }
         [AcceptVerbs("Post", "Get")]
         public IActionResult LogOut()
         {
-            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            var storedCookies = Request.Cookies.Keys;
-            foreach (var cookies in storedCookies)
+            try
             {
-                Response.Cookies.Delete(cookies);
+                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+                var storedCookies = Request.Cookies.Keys;
+                foreach (var cookies in storedCookies)
+                {
+                    Response.Cookies.Delete(cookies);
+                }
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("Login");
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

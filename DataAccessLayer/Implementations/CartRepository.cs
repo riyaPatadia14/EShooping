@@ -29,7 +29,7 @@ namespace DataAccessLayer.Implementations
             await _genericRepository.Add(orderDetailsAddToCart);
         }
 
-        public async Task<PaginatedList<OrderListDto>> GetAllOrderDetails(int? pageNumber)
+        public async Task<PaginatedList<OrderListDto>> GetAllOrderDetails(int? pageNumber, string searchString)
         {
             try
             {
@@ -42,12 +42,24 @@ namespace DataAccessLayer.Implementations
                                             FirstName = o.FirstName,
                                             LastName = o.LastName,
                                             Qty = od.Qty,
-                                            UnitPrice = od.UnitPrice,   
+                                            UnitPrice = od.UnitPrice,
                                             Title = p.Title,
-                                            ImagePath = p.ImagePath
+                                            ImagePath = p.ImagePath,
+                                            InStock = p.InStock
+                                            
                                         }).ToList();
                 int pageSize = 4;
-                return await PaginatedList<OrderListDto>.CreateAsync(orderDetailsList, pageNumber ?? 1, pageSize); 
+                if (!String.IsNullOrEmpty(searchString))
+                {
+                    orderDetailsList = orderDetailsList.Where(p =>
+                        p.Title.Contains(searchString) ||
+                        p.UnitPrice.ToString().Contains(searchString) ||
+                        p.Qty.ToString().Contains(searchString) ||
+                        p.LastName.Contains(searchString) ||
+                        p.FirstName.Contains(searchString)
+                    ).ToList();
+                }
+                return await PaginatedList<OrderListDto>.CreateAsync(orderDetailsList, pageNumber ?? 1, pageSize);
             }
             catch (Exception)
             {

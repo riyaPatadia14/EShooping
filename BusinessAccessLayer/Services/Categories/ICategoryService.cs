@@ -10,7 +10,7 @@ namespace BusinessAccessLayer.Services.Categories
         Task CategoryAdd(CategoryAddDto addcategory);
         Task CategoryUpdate(CategoryViewDto category);
         CategoryViewDto GetCategoryById(int id);
-        Task<PaginatedList<CategoryListDto>> GetAllCategory(int? pageNumber);
+        Task<PaginatedList<CategoryListDto>> GetAllCategory(int? pageNumber, string searchString);
         Task<List<SelectListItem>> GetCategoryList();
         Task CategoryDelete(CategoryViewDto category);
     }
