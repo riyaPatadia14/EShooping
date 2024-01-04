@@ -40,7 +40,7 @@
                                                 </div>
                                                 @if (item.Qty == 1)
                                                 {
-                                                    <a href="Cart/Remove/@item.ProductId" style="margin-left:40%;margin-top:3%;width: 20px;"> <i class="fa fa-trash-o fs-4 text-warning" aria-hidden="true"></i></a>
+                                                    <a asp-controller="Cart" asp-action="Remove" asp-route-id="@item.ProductId" style="margin-left:40%;margin-top:3%;width: 20px;"> <i class="fa fa-trash-o fs-4 text-warning" aria-hidden="true"></i></a>
                                                 }
                                             </div>
                                         </td>

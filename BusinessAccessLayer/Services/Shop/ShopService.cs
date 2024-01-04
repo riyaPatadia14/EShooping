@@ -12,22 +12,22 @@ namespace BusinessAccessLayer.Services.Client
         {
             _shopRepostiory = shopRepository;
         }
-        public async Task<PaginatedList<ShopProductListDto>> GetClientProductList(int id, int? pageNumber)
+        public async Task<PaginatedList<ShopProductListDto>> GetShopProductList(int categoryId, int brandId, int colorId, int minimumPrice, int maximumPrice, int? pageNumber)
         {
             try
             {
-                return await _shopRepostiory.GetClientProductList(id, pageNumber);
+                return await _shopRepostiory.GetShopProductList(categoryId, colorId, brandId, minimumPrice, maximumPrice, pageNumber);
             }
             catch (Exception)
             {
                 throw;
             }
         }
-        public async Task<ProductAddToCartDto> GetClientProductById(int id)
+        public async Task<ProductAddToCartDto> GetShopProductById(int id)
         {
             try
             {
-                return await _shopRepostiory.GetClientProductsById(id);
+                return await _shopRepostiory.GetShopProductsById(id);
             }
             catch (Exception)
             {
@@ -46,6 +46,16 @@ namespace BusinessAccessLayer.Services.Client
 
                 throw;
             }
+        }
+
+        public decimal GetMaxPrice()
+        {
+           return _shopRepostiory.GetMaxPrice();
+        }
+
+        public decimal GetMinPrice()
+        {
+           return _shopRepostiory.GetMinPrice();
         }
     }
 }

@@ -6,8 +6,10 @@ namespace DataAccessLayer.Interface
 {
     public interface IShop
     {
-        Task<PaginatedList<ShopProductListDto>> GetClientProductList(int id, int? pageNumber);
-        Task<ProductAddToCartDto> GetClientProductsById(int id);
+        Task<PaginatedList<ShopProductListDto>> GetShopProductList(int categoryId, int brandId, int colorId, int minimumPrice, int maximumPrice, int? pageNumber);
+        Task<ProductAddToCartDto> GetShopProductsById(int id);
         Task<IList<ProductHomeDto>> LowestProductPriceList();
+        decimal GetMaxPrice();
+        decimal GetMinPrice();
     }
 }

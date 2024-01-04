@@ -158,8 +158,10 @@ namespace ECommerceShopping.Controllers
                 {
                     cartItems.Remove(existingItem);
                     HttpContext.Session.SetObjectAsJson("ComplexObject", cartItems);
+                    HttpContext.Session.Clear();
                     return RedirectToAction("Index", "Shop");
                 }
+                HttpContext.Session.Clear();
                 return RedirectToAction("Details", "Cart");
             }
             catch (Exception)

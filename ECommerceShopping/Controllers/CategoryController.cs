@@ -37,7 +37,7 @@ namespace ECommerceShopping.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                if (categoryAdd != null)
                 {
                     await _categoryService.CategoryAdd(categoryAdd);
                 }
@@ -86,12 +86,9 @@ namespace ECommerceShopping.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(CategoryViewDto category)
         {
-            if (!ModelState.IsValid)
+            if (category != null)
             {
-                if (category != null)
-                {
-                    await _categoryService.CategoryUpdate(category);
-                }
+                await _categoryService.CategoryUpdate(category);
             }
             return RedirectToAction("Index");
         }
