@@ -16,7 +16,8 @@ namespace BusinessAccessLayer.Services.Client
         {
             try
             {
-                return await _shopRepostiory.GetShopProductList(categoryId, colorId, brandId, minimumPrice, maximumPrice, pageNumber);
+                var shopProductList = await _shopRepostiory.GetShopProductList(categoryId, brandId, colorId, minimumPrice, maximumPrice, pageNumber);
+                return shopProductList;
             }
             catch (Exception)
             {

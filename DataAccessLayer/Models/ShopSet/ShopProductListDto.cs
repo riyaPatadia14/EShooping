@@ -16,6 +16,10 @@ namespace DataAccessLayer.Models.ShopSet
         public bool InStock { get; set; } = false;
         public bool IsActive { get; set; } = false;
         [NotMapped]
+        public string minPrice { get; set; } = string.Empty;
+        [NotMapped]
+        public string maxPrice { get; set; } = string.Empty;
+        [NotMapped]
         public string BrandName { get; set; } = string.Empty;
         [NotMapped]
         public string CategoryName { get; set; } = string.Empty;

@@ -64,7 +64,7 @@
                     <div class="total-products">
                         <p class="fw-bolder">Showing @((Model.PageIndex - 1) * Model.PageSize + 1) - @Math.Min(Model.PageIndex * Model.PageSize, Model.TotalItems) of @Model.TotalItems </p>
                         <div class="view d-flex">
-                            <a asp-controller="Shop" asp-action="Index" asp-route-id="0"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+                            <a asp-controller="Shop" asp-action="Index"><i class="fa fa-th-large" aria-hidden="true"></i></a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                         <div class="product-description d-flex align-items-center justify-content-between">
                             <div class="product-meta-data">
                                 <div class="line"></div>
-                                <p class="product-price"><i class="fa fa-inr" aria-hidden="true"></i> @item.Price</p>
+                                <p class="product-price"><i class="fa fa-inr" aria-hidden="true"></i> @item.minPrice</p>
                                 <a href="Shop/Details/@item.Id">
                                     <h6>@item.Title</h6>
                                 </a>
@@ -133,6 +133,51 @@
         window.location.href = url;
     }
 </script>
+<script>
+    $(function () {
+        $("#price-slider").slider({
+            range: true,
+            min: parseInt($('#price-slider').data('min')),
+            max: parseInt($('#price-slider').data('max')),
+            values: [parseInt($('#price-slider').data('min')), parseInt($('#price-slider').data('max'))],
+            slide: function (event, ui) {
+                $("#min-price").text(+ ui.values[0]);
+                $("#max-price").text(+ ui.values[1]);
+            },
+            stop: function (event, ui) {
+                updateProductList(ui.values[0], ui.values[1]);
+            }
+        });
+
+        $("#min-price").text($("#price-slider").slider("values", 0));
+        $("#max-price").text($("#price-slider").slider("values", 1));
+
+        function updateProductList(minPrice, maxPrice) {
+            var categoryId = $('#CategoryId').val();
+            var brandId = $('#BrandId').val();
+            var colorId = $('#ColorId').val();
+
+            $.ajax({
+                url: '/Shop/Index',
+                type: 'GET',
+                data: {
+                    categoryId: categoryId,
+                    brandId: brandId,
+                    colorId: colorId,
+                    minimumPrice: minPrice,
+                    maximumPrice: maxPrice
+                },
+                success: function (result) {
+                    console.log(result);
+                    $('.amado_product_area .section-padding-100').html(result);
+                },
+                error: function (error) {
+                    console.error(error);
+                }
+            });
+        }
+    });
+</script>
 @*<script>
     document.addEventListener('DOMContentLoaded', function () {
         var radioButtons = document.querySelectorAll('.form-check-input');
@@ -155,50 +200,5 @@
                 window.location.href = '/Shop/Index?brandId=' + selectedBrandId;
             });
         });
-    });
-</script>
-<script>
-    $(function () {
-        var minPrice = parseInt($('#price-slider').data('min'));
-        var maxPrice = parseInt($('#price-slider').data('max'));
-
-        $("#price-slider").slider({
-            range: true,
-            min: minPrice,
-            max: maxPrice,
-            values: [minPrice, maxPrice],
-            slide: function (event, ui) {
-                $("#min-price").text(ui.values[0]);
-                $("#max-price").text(ui.values[1]);
-
-                // Make an AJAX request to your controller action
-                updateProductList(ui.values[0], ui.values[1]);
-            }
-        });
-
-        function updateProductList(minPrice, maxPrice) {
-            var categoryId = $('#CategoryId').val(); // Replace with your actual element ID
-            var brandId = $('#BrandId').val(); // Replace with your actual element ID
-            var colorId = $('#ColorId').val(); // Replace with your actual element ID
-
-            $.ajax({
-                url: '/Shop/Index',
-                type: 'GET',
-                data: {
-                    categoryId: categoryId,
-                    brandId: brandId,
-                    colorId: colorId,
-                    minimumPrice: minPrice,
-                    maximumPrice: maxPrice
-                },
-                success: function (result) {
-                    // Update your product list or perform other actions with the result
-                    console.log(result);
-                },
-                error: function (error) {
-                    console.error(error);
-                }
-            });
-        }
     });
 </script>
