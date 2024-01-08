@@ -8,7 +8,7 @@
             {
                 <ul>
                     <li>
-                        <a href="@Url.Action("Index", "Shop", new { categoryId = category.Value })"
+                        <a href="@Url.Action("Index", "Shop", new { categoryId = category.Value })" data-category-id="@category.Value"
                        class="@(ViewBag.SelectedCategoryId.ToString() == category.Value ? "text-warning" : "")">@category.Text</a>
                     </li>
                 </ul>
@@ -21,7 +21,7 @@
             @foreach (SelectListItem brand in ViewBag.Brands)
             {
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" value="@brand.Value" data-id="@brand.Value" name="BrandRadio"
+                    <input class="form-check-input" type="radio" value="@brand.Value" data-id="@brand.Value" name="BrandRadio" data-brand-id="@brand.Value"
                        @((ViewBag.SelectedBrandId.ToString() == brand.Value.ToString()) ? "checked" : "")>
                     <label class="form-check-label" for="@($"brand_{brand.Value}")">@brand.Text</label>
                 </div>
@@ -35,7 +35,7 @@
                 @foreach (SelectListItem color in ViewBag.Colors)
                 {
                     <li>
-                        <a href="@Url.Action("Index", "Shop", new { colorId = color.Value })" class="color-option @(ViewBag.SelectedColorId.ToString() == color.Value ? "border border-success" : "")" style="background-color: @color.Group.Name;" id="@($"color_{color.Group.Name}")"></a>
+                        <a href="@Url.Action("Index", "Shop", new { colorId = color.Value })" data-color-id="@color.Value" class="color-option @(ViewBag.SelectedColorId.ToString() == color.Value ? "border border-success" : "")" style="background-color: @color.Group.Name;" id="@($"color_{color.Group.Name}")"></a>
                     </li>
                 }
             </ul>
@@ -76,13 +76,13 @@
                 <div class="col-12 col-sm-6 col-md-12 col-xl-6">
                     <div class="single-product-wrapper">
                         <div class="product-img">
-                            <img src="~/img/product-list-img/@item.ImagePath" onclick="redirectToDetails(@item.Id)" />
+                            <img src="~/img/product-list-img/@item.ImagePath" onclick="redirectToDetails(@item.ProductId)" />
                         </div>
                         <div class="product-description d-flex align-items-center justify-content-between">
                             <div class="product-meta-data">
                                 <div class="line"></div>
                                 <p class="product-price"><i class="fa fa-inr" aria-hidden="true"></i> @item.minPrice</p>
-                                <a href="Shop/Details/@item.Id">
+                                <a href="Shop/Details/@item.ProductId">
                                     <h6>@item.Title</h6>
                                 </a>
                             </div>
@@ -95,7 +95,7 @@
                                     <i class="fa fa-star" aria-hidden="true"></i>
                                 </div>
                                 <div class="cart">
-                                    <a asp-controller="Cart" asp-action="Order" asp-route-id="@item.Id" data-toggle="tooltip" data-placement="left" title="Add to Cart">
+                                    <a asp-controller="Cart" asp-action="Order" asp-route-id="@item.ProductId" data-toggle="tooltip" data-placement="left" title="Add to Cart">
                                         <img src="img/core-img/cart.png" alt="">
                                     </a>
                                 </div>
@@ -135,49 +135,66 @@
 </script>
 <script>
     $(function () {
+        debugger
+        var defaultMinPrice = parseInt('@ViewBag.MinPrice');
+        var defaultMaxPrice = parseInt('@ViewBag.MaxPrice');
+
         $("#price-slider").slider({
             range: true,
-            min: parseInt($('#price-slider').data('min')),
-            max: parseInt($('#price-slider').data('max')),
-            values: [parseInt($('#price-slider').data('min')), parseInt($('#price-slider').data('max'))],
+            min: defaultMinPrice,
+            max: defaultMaxPrice,
+            values: [defaultMinPrice, defaultMaxPrice],
             slide: function (event, ui) {
-                $("#min-price").text(+ ui.values[0]);
-                $("#max-price").text(+ ui.values[1]);
+                $("#min-price").text(ui.values[0]);
+                $("#max-price").text(ui.values[1]);
             },
-            stop: function (event, ui) {
-                updateProductList(ui.values[0], ui.values[1]);
+            change: function (event, ui) {
+                var minPrice = ui.values[0] || defaultMinPrice;
+                var maxPrice = ui.values[1] || defaultMaxPrice;
+                debugger
+                // Retrieve categoryId, brandId, and colorId
+                var categoryId = $('.catagories-menu a.text-warning').attr('data-category-id');
+                var brandId = $('.form-check-input:checked').val();
+                var colorId = $('.color-option.border-success').attr('data-color-id');
+
+                console.log('categoryId:', categoryId);
+                console.log('brandId:', brandId);
+                console.log('colorId:', colorId);
+
+                updateProductList(categoryId, brandId, colorId, minPrice, maxPrice);
             }
         });
-
-        $("#min-price").text($("#price-slider").slider("values", 0));
-        $("#max-price").text($("#price-slider").slider("values", 1));
-
-        function updateProductList(minPrice, maxPrice) {
-            var categoryId = $('#CategoryId').val();
-            var brandId = $('#BrandId').val();
-            var colorId = $('#ColorId').val();
-
-            $.ajax({
-                url: '/Shop/Index',
-                type: 'GET',
-                data: {
-                    categoryId: categoryId,
-                    brandId: brandId,
-                    colorId: colorId,
-                    minimumPrice: minPrice,
-                    maximumPrice: maxPrice
-                },
-                success: function (result) {
-                    console.log(result);
-                    $('.amado_product_area .section-padding-100').html(result);
-                },
-                error: function (error) {
-                    console.error(error);
-                }
-            });
-        }
     });
+
+    function updateProductList(minPrice, maxPrice) {
+        // Use global variables categoryId, brandId, and colorId
+        $.ajax({
+            url: '/Shop/Index',
+            type: 'GET',
+            data: {
+                categoryId: categoryId,
+                brandId: brandId,
+                colorId: colorId,
+                minimumPrice: minPrice,
+                maximumPrice: maxPrice
+            },
+            success: function (result) {
+                $('.amado_product_area .section-padding-100').html(result);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
 </script>
+
+
+
+
+
+
+
 @*<script>
     document.addEventListener('DOMContentLoaded', function () {
         var radioButtons = document.querySelectorAll('.form-check-input');
