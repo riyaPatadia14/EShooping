@@ -1,0 +1,115 @@
+﻿@model ProductAddDto
+
+    <div class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailCategoryLabel">Update Product</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="details-modal">
+                    <div class="container-fluid">
+                        <form method="post" asp-action="Edit" enctype="multipart/form-data" id="createForm">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-8 col-sm-8">
+                                        <label for="exampleInputEmail1" class="form-label">Title</label>
+                                        <input type="text" class="form-control" id="title" aria-describedby="emailHelp" name="Title" asp-for="Title" autocomplete="off">
+                                        <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="Id" asp-for="Id" disabled>
+                                        <span asp-validation-for="Title" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-5 col-sm-4">
+                                        <label for="exampleInputEmail1" class="form-label">Price</label>
+                                        <input type="text" class="form-control" id="title" aria-describedby="emailHelp" name="Price" asp-for="Price" autocomplete="off">
+                                        <span asp-validation-for="Price" class="text-danger"></span>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12 lead">
+                                    <label for="exampleInputEmail1" class="form-label">Description</label>
+                                    <textarea type="text" class="form-control" id="title" aria-describedby="emailHelp" name="Description" asp-for="Description" autocomplete="off"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-8 col-sm-6">
+                                        <label for="brand" class="form-label">Category</label>
+                                        <select class="form-control" id="category" name="CategoriesId" asp-for="CategoriesId" autocomplete="off">
+                                            <option value="">Select Category</option>
+                                            @foreach (var category in Model.Categories)
+                                            {
+                                                <option value="@category.Value" selected="@(Model.CategoriesId == int.Parse(category.Value) ? "selected" : null)">
+                                                    @category.Text
+                                                </option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="CategoriesId" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="col-8 col-sm-6">
+                                        <label for="brandsId" class="form-label">Brand</label>
+                                        <select class="form-control" id="brandsId" name="BrandsId" asp-for="BrandsId" autocomplete="off">
+                                            <option value="">Select Category</option>
+                                            @foreach (var brands in Model.Brands)
+                                            {
+                                                <option value="@brands.Value" selected="@(Model.BrandsId == int.Parse(brands.Value) ? "selected" : null)">
+                                                    @brands.Text
+                                                </option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="BrandsId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-8 col-sm-6">
+                                        <label for="color" class="form-label">Color</label>
+                                        <select class="form-control" id="colorsId" name="ColorId" asp-for="ColorId" autocomplete="off">
+                                            <option value="">Select Colors</option>
+                                            @foreach (var colors in Model.Colors)
+                                            {
+                                                <option value="@colors.Value" selected="@(Model.ColorId == int.Parse(colors.Value) ? "selected" : null)">
+                                                    @colors.Text
+                                                </option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="ColorId" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-8 col-sm-6 form-check form-switch" style="margin-top:5%">
+                                        <label class="form-check-label" for="inStock">InStock</label>
+                                    <input class="form-check-input toggle-checkbox" type="checkbox" role="switch" style="margin-left:2%"  id="inStock" name="InStock" asp-for="InStock" autocomplete="off">
+                                        <br />
+                                        <label class="form-check-label" for="inActive">IsActive</label>
+                                    <input class="form-check-input toggle-checkbox" type="checkbox" role="switch" style="margin-left:2%"  id="inActive" name="IsActive" asp-for="IsActive" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-8 col-sm-8">
+                                        <label for="exampleInputEmail1" class="form-label">Image Path</label>
+                                        <input type="file" class="form-control" id="chooseImg" aria-describedby="emailHelp" name="ImageFile" asp-for="ImageFile" autocomplete="off">
+                                    </div>
+                                    <div class="col-5 col-sm-4 form-check form-switch">
+                                        <img src="~/img/product-list-img/@Model.ImagePath" style="width:100px; height:100px" class="border border-white rounded-3" id="imgPreview" autocomplete="off" />
+                                        <input type="hidden" class="form-control" aria-describedby="emailHelp" name="ImagePath" asp-for="ImagePath" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="float-end">
+                                <button type="button" class="btn btn-secondary" onclick="@("window.location.href='" + @Url.Action("Index", "Product") + "'");" id="btn-close">Close</button>
+                                <button type="submit" class="btn btn-primary" id="btn-save">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/js/product/product.js"></script>

@@ -1,6 +1,6 @@
 ﻿namespace DataAccessLayer.Models.ProductSet.Dto
 {
-    public class ProductViewDto : ProductListDto
+    public class ProductViewDto : ProductAddDto
     {
     }
 }

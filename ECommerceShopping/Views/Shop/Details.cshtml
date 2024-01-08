@@ -1,0 +1,76 @@
+﻿@model ProductAddToCartDto
+
+<div class="single-product-area section-padding-100 clearfix">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <div class="single_product_thumb">
+                    <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
+                        </ol>
+                    </div>
+                    <img src="~/img/product-list-img/@ViewBag.ProductDetails.ImagePath" alt="Product" class="img-fluid border border-white rounded-3" style="width: 750px; height: 700px;">
+                </div>
+            </div>
+            <div class="col-12 col-lg-5">
+                <div class="single_product_desc">
+                    <div class="product-meta-data">
+                        <div class="line"></div>
+                        <p class="product-price"><i class="fa fa-inr" aria-hidden="true"></i>@ViewBag.ProductDetails.Price</p>
+                        <a href="product-details.html">
+                            <h6>@ViewBag.ProductDetails.Title</h6>
+                        </a>
+                        <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
+                            <div class="ratings">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </div>
+                            <div class="review">
+                                <a href="#">Write A Review</a>
+                            </div>
+                        </div>
+                        <p class="avaibility">
+                            <i class="fa fa-circle" style="color: @(ViewBag.ProductDetails.InStock == true ? "green" : "red")"></i>
+                            @if (ViewBag.ProductDetails.InStock)
+                            {
+                                <span> In Stock</span>
+                            }
+                            else
+                            {
+                                <span> Out of Stock</span>
+                            }
+                        </p>
+
+                    </div>
+                    <div class="short_overview my-5">
+                        <p>@ViewBag.ProductDetails.Description</p>
+                    </div>
+                    <form class="cart clearfix" method="post">
+                        <div class="cart-btn d-flex mb-50">
+                            <p>Qty</p>
+                            <div class="quantity">
+                                <span class="qty-minus" onclick="updateQuantity('@Url.Action("ProductQuantity", "Cart", new { id = ViewBag.ProductDetails.Id, name="minus"})'); return false;"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+                                <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="@( ViewBag.ProductQty != null ? ViewBag.ProductQty : 0)">
+                       
+                                <span class="qty-plus" onclick="updateQuantity('@Url.Action("ProductQuantity", "Cart", new { id = ViewBag.ProductDetails.Id, name="add"})'); return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
+                                <input type="hidden" asp-for="ProductId" name="ProductId" />
+                            </div>
+                        </div>
+                        <a type="button" class="btn amado-btn" asp-controller="Cart" asp-action="Order" asp-route-id="@ViewBag.ProductDetails.Id">Add to cart</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function updateQuantity(url) {
+        //alert('Function called with URL: ' + url);
+        window.location.href = url;
+    }
+</script>
+
+

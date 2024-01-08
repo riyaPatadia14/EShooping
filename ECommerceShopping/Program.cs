@@ -1,5 +1,6 @@
 using IOCContainer;
 
+
 namespace ECommerceShopping
 {
     public class Program
@@ -24,9 +25,10 @@ namespace ECommerceShopping
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseCookiePolicy();
+            app.UseSession();
             app.UseRouting();
-
+            app.UseAuthentication();    
             app.UseAuthorization();
 
             app.MapControllerRoute(

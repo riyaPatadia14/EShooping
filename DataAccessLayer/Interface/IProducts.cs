@@ -1,13 +1,16 @@
 ﻿namespace DataAccessLayer.Interface
 {
-    using DataAccessLayer.Models.ProductSet;
+    using DataAccessLayer.Helper;
+    using DataAccessLayer.Models.ProductSet.Dto;
 
     public interface IProducts
     {
-        Task<IList<ProductsModel>> GetAllProducts();
-        Task AddProduct(ProductsModel products);
-        ProductsModel GetProductsById(int id);
-        Task UpdateProduct(ProductsModel products);
-        Task DeleteProduct(ProductsModel products);
+        Task<PaginatedList<ProductListDto>> GetAllProducts(int? pageNumber, string searchString);
+        Task AddProduct(ProductAddDto products);
+        Task<ProductViewDto> GetProductsById(int id);
+        Task UpdateProduct(ProductViewDto products);
+        Task DeleteProduct(ProductViewDto products);
+        Task<ProductAddDto> ProductDropDownList(ProductAddDto products);
+
     }
 }

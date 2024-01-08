@@ -1,0 +1,221 @@
+﻿@model PaginatedList<ShopProductListDto>
+
+<div class="shop_sidebar_area">
+    <div class="widget catagory mb-50">
+        <h6 class="widget-title mb-30">Categories</h6>
+        <div class="catagories-menu">
+            @foreach (SelectListItem category in ViewBag.Categories)
+            {
+                <ul>
+                    <li>
+                        <a href="@Url.Action("Index", "Shop", new { categoryId = category.Value })" data-category-id="@category.Value"
+                       class="@(ViewBag.SelectedCategoryId.ToString() == category.Value ? "text-warning" : "")">@category.Text</a>
+                    </li>
+                </ul>
+            }
+        </div>
+    </div>
+    <div class="widget brands mb-50">
+        <h6 class="widget-title mb-30">Brands</h6>
+        <div class="widget-desc">
+            @foreach (SelectListItem brand in ViewBag.Brands)
+            {
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" value="@brand.Value" data-id="@brand.Value" name="BrandRadio" data-brand-id="@brand.Value"
+                       @((ViewBag.SelectedBrandId.ToString() == brand.Value.ToString()) ? "checked" : "")>
+                    <label class="form-check-label" for="@($"brand_{brand.Value}")">@brand.Text</label>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="widget color mb-50">
+        <h6 class="widget-title mb-30">Color</h6>
+        <div class="widget-desc">
+            <ul class="d-flex">
+                @foreach (SelectListItem color in ViewBag.Colors)
+                {
+                    <li>
+                        <a href="@Url.Action("Index", "Shop", new { colorId = color.Value })" data-color-id="@color.Value" class="color-option @(ViewBag.SelectedColorId.ToString() == color.Value ? "border border-success" : "")" style="background-color: @color.Group.Name;" id="@($"color_{color.Group.Name}")"></a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="widget price mb-50">
+        <h6 class="widget-title mb-30">Price</h6>
+        <div class="widget-desc">
+            <div class="slider-range">
+                <div id="price-slider" data-min="@ViewBag.MinPrice" data-max="@ViewBag.MaxPrice"></div>
+                <div class="range-price">
+                    <i class="fa fa-inr" aria-hidden="true"></i>
+                    <span id="min-price">@ViewBag.MinPrice</span> -
+                    <i class="fa fa-inr" aria-hidden="true"></i>
+                    <span id="max-price">@ViewBag.MaxPrice</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="amado_product_area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="product-topbar d-xl-flex align-items-end justify-content-between">
+                    <div class="total-products">
+                        <p class="fw-bolder">Showing @((Model.PageIndex - 1) * Model.PageSize + 1) - @Math.Min(Model.PageIndex * Model.PageSize, Model.TotalItems) of @Model.TotalItems </p>
+                        <div class="view d-flex">
+                            <a asp-controller="Shop" asp-action="Index"><i class="fa fa-th-large" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                    <div class="single-product-wrapper">
+                        <div class="product-img">
+                            <img src="~/img/product-list-img/@item.ImagePath" onclick="redirectToDetails(@item.ProductId)" />
+                        </div>
+                        <div class="product-description d-flex align-items-center justify-content-between">
+                            <div class="product-meta-data">
+                                <div class="line"></div>
+                                <p class="product-price"><i class="fa fa-inr" aria-hidden="true"></i> @item.minPrice</p>
+                                <a href="Shop/Details/@item.ProductId">
+                                    <h6>@item.Title</h6>
+                                </a>
+                            </div>
+                            <div class="ratings-cart text-right">
+                                <div class="ratings">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </div>
+                                <div class="cart">
+                                    <a asp-controller="Cart" asp-action="Order" asp-route-id="@item.ProductId" data-toggle="tooltip" data-placement="left" title="Add to Cart">
+                                        <img src="img/core-img/cart.png" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            @{
+                var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+                var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+            }
+            <div class="d-flex justify-content-end">
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex - 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-default @prevDisabled">
+                    Previous
+                </a> &nbsp;
+                <a asp-action="Index"
+                   asp-route-sortOrder="@ViewData["CurrentSort"]"
+                   asp-route-pageNumber="@(Model.PageIndex + 1)"
+                   asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                   class="btn btn-default @nextDisabled">
+                    Next
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function redirectToDetails(productId) {
+        var url = '@Url.Action("Details", "shop")' + '?id=' + productId;
+        window.location.href = url;
+    }
+</script>
+<script>
+    $(function () {
+        debugger
+        var defaultMinPrice = parseInt('@ViewBag.MinPrice');
+        var defaultMaxPrice = parseInt('@ViewBag.MaxPrice');
+
+        $("#price-slider").slider({
+            range: true,
+            min: defaultMinPrice,
+            max: defaultMaxPrice,
+            values: [defaultMinPrice, defaultMaxPrice],
+            slide: function (event, ui) {
+                $("#min-price").text(ui.values[0]);
+                $("#max-price").text(ui.values[1]);
+            },
+            change: function (event, ui) {
+                var minPrice = ui.values[0] || defaultMinPrice;
+                var maxPrice = ui.values[1] || defaultMaxPrice;
+                debugger
+                // Retrieve categoryId, brandId, and colorId
+                var categoryId = $('.catagories-menu a.text-warning').attr('data-category-id');
+                var brandId = $('.form-check-input:checked').val();
+                var colorId = $('.color-option.border-success').attr('data-color-id');
+
+                console.log('categoryId:', categoryId);
+                console.log('brandId:', brandId);
+                console.log('colorId:', colorId);
+
+                updateProductList(categoryId, brandId, colorId, minPrice, maxPrice);
+            }
+        });
+    });
+
+    function updateProductList(minPrice, maxPrice) {
+        // Use global variables categoryId, brandId, and colorId
+        $.ajax({
+            url: '/Shop/Index',
+            type: 'GET',
+            data: {
+                categoryId: categoryId,
+                brandId: brandId,
+                colorId: colorId,
+                minimumPrice: minPrice,
+                maximumPrice: maxPrice
+            },
+            success: function (result) {
+                $('.amado_product_area .section-padding-100').html(result);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+</script>
+
+
+
+
+
+
+
+@*<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var radioButtons = document.querySelectorAll('.form-check-input');
+
+        radioButtons.forEach(function (radio) {
+            radio.addEventListener('click', function () {
+                var selectedBrandId = this.value;
+                window.location.href = '/Shop/Index?categoryId=@ViewBag.SelectedCategoryId&brandId=' + selectedBrandId;
+            });
+        });
+    });
+</script>*@
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var radioButtons = document.querySelectorAll('.form-check-input');
+
+        radioButtons.forEach(function (radio) {
+            radio.addEventListener('click', function () {
+                var selectedBrandId = this.value;
+                window.location.href = '/Shop/Index?brandId=' + selectedBrandId;
+            });
+        });
+    });
+</script>

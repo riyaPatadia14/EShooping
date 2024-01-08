@@ -4,23 +4,27 @@
     ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-</head>
-<body>
     <div id="PlaceHolderHere"></div>
-    <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" id="btnCreateModal" style="margin-left:5%;">
-        <i class="fa fa-plus" aria-hidden="true"></i>
-    </button>
-    <div class="container mt-3">
-        <h2>Category List</h2>
+   
+    <div class="container mt-1">
+           <div class="container">
+        <div class="row mb-2">
+            <div class="col-6">
+                <form class="d-flex" style="width:60%" asp-action="Index" asp-controller="Category">
+                    <input class="form-control me-2" type="text" name="SearchString" value="@ViewData["CurrentFilter"]" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                </form>
+            </div>
+            <div class="col">
+                <h5>Category List</h5>
+            </div>
+            <div class="col">
+                <button type="button" class="float-end btn btn-outline-primary mb-1" data-bs-toggle="modal" id="btnCreateModal">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
         <table class="table table-bordered" id="categoryGrid">
             <thead>
                 <tr>
@@ -35,26 +39,17 @@
                 {
                     <tr>
                         <td>@item.CategoryName</td>
-                        <td><img src="~/img/category-img/@item.ImagePath" style="width:100px; height:100px" /></td>
+                        <td><img src="~/img/category-img/@item.ImagePath" style="width:100px; height:100px" class="border border-white rounded-3" /></td>
                         <td>@item.Active</td>
                         <td>
-                          @* <a asp-action="Details" asp-route-id="@item.Id" class="detailFormAction" data-category-id="@item.Id">
-                        <i class="fa fa-eye btn btn-info" aria-hidden="true"></i>
-                        </a>*@
-                            @*<a asp-action="Edit" asp-route-id="@item.Id" id="editFormAction">
-                        <i class="fa fa-pencil-square-o btn btn-success" aria-hidden="true"></i>
-                        </a>*@
-                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#btnDetailModal" id="btnDetailModal" data-url="@Url.Action($"Details/{item.Id}")">
-                                Details
+                            <button type="button" class="btn btn-outline-info" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#btnDetailModal" id="btnDetailModal" data-url="@Url.Action($"Details/{item.Id}")">
+                                <i class="fa fa-info" aria-hidden="true"></i>
                             </button>
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#editCategory" data-url="@Url.Action($"Edit/{item.Id}")">
-                                Edit
+                            <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#editCategory" id="btnEditModal" data-url="@Url.Action($"Edit/{item.Id}")">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
                             </button>
-                            @* <a asp-action="Delete" asp-route-id="@item.Id" id="deleteFormAction" data-togel>
-                        <i class="fa fa-trash btn btn-danger" aria-hidden="true"></i>
-                        </a>*@
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#deleteCategory" data-url="@Url.Action($"Delete/{item.Id}")">
-                                Delete
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-toggle="ajax-modal" data-target="#deleteCategory" data-url="@Url.Action($"Delete/{item.Id}")">
+                                <i class="fa fa-trash-o" aria-hidden="true"></i>
                             </button>
                         </td>
                     </tr>
@@ -66,21 +61,22 @@
         var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
         var nextDisabled = !Model.HasNextPage ? "disabled" : "";
     }
-
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-default @prevDisabled">
-        Previous
-    </a>
-    <a asp-action="Index"
-       asp-route-sortOrder="@ViewData["CurrentSort"]"
-       asp-route-pageNumber="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-default @nextDisabled">
-        Next
-    </a>
+<div class="d-flex justify-content-center" style="padding-left:55%">
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex - 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default @prevDisabled">
+        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+        </a>
+        <a asp-action="Index"
+           asp-route-sortOrder="@ViewData["CurrentSort"]"
+           asp-route-pageNumber="@(Model.PageIndex + 1)"
+           asp-route-currentFilter="@ViewData["CurrentFilter"]"
+           class="btn btn-default  @nextDisabled">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
+        </a>
+    </div>
     @*Create Modal Start*@
     <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -90,9 +86,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="modal-body">
-                        @Html.Partial("_Create", new CategoryAddDto())
-                    </div>
+                    @Html.Partial("_Create", new CategoryAddDto())
                 </div>
                 <div class="modal-footer">
                 </div>
@@ -100,63 +94,6 @@
         </div>
     </div>
     @*Create Modal End*@
-    @*Delete Modal start*@
-
-    @*<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-    <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-    @Html.Partial("_Delete", new CategoryAddDto())
-    </div>
-    <div class="modal-footer">
-    </div>
-    </div>
-    </div>
-    </div>*@
-
-    @*Delete Modal End*@
-    @*Edit Modal Start*@
-    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Update Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    @Html.Partial("_Edit", new CategoryViewDto())
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
-    @*Edit Modal End*@
-    @*Details Modal Start*@
-
-    <div class="modal fade" id="detailsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body" id="details-modal">
-                    @Html.Partial("_Details", new CategoryViewDto())
-                </div>
-                <div class="modal-footer">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    @*Details Modal End*@
     @section scripts{
         <script src="~/js/category/model.js"></script>
     }
-</body>
-</html>
